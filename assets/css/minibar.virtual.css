@@ -11,6 +11,14 @@
     width: 50%;
 }
 
+.shadow-large {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.project-image {
+    float: left;
+}
+
 .topbar-nav {
     display: flex;
     align-items: center;
