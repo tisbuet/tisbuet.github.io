@@ -12,24 +12,25 @@
   
   <link rel="shortcut icon" type="image/x-icon" href="./assets/short.webp">
   
-  <link rel="stylesheet" type="text/css" href="../assets/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/themify-icons.css">
   
-  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
 
-  <link rel="stylesheet" type="text/css" href="../assets/vendor/animate/animate.css">
+  <link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css">
   
-  <link rel="stylesheet" type="text/css" href="../assets/vendor/owl-carousel/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="./assets/vendor/owl-carousel/owl.carousel.css">
   
-  <link rel="stylesheet" type="text/css" href="../assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
   
-  <link rel="stylesheet" type="text/css" href="../assets/vendor/nice-select/css/nice-select.css">
+  <link rel="stylesheet" type="text/css" href="./assets/vendor/nice-select/css/nice-select.css">
 
-  <link rel="stylesheet" type="text/css" href="../assets/vendor/fancybox/css/jquery.fancybox.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/vendor/fancybox/css/jquery.fancybox.min.css">
   
-  <link rel="stylesheet" type="text/css" href="../assets/css/virtual.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/virtual.css">
   
-  <link rel="stylesheet" type="text/css" href="../assets/css/minibar.virtual.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/minibar.virtual.css">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     .center_x {
       margin: auto;
@@ -56,8 +57,8 @@
     <div class="set-menu">
       <p>Select Color</p>
       <div class="color-bar" data-toggle="selected">
-        <span class="color-item bg-theme-red" data-class="theme-red"></span>
         <span class="color-item bg-theme-blue selected" data-class="theme-blue"></span>
+        <span class="color-item bg-theme-red" data-class="theme-red"></span>
         <span class="color-item bg-theme-green" data-class="theme-green"></span>
         <span class="color-item bg-theme-orange" data-class="theme-orange"></span>
         <span class="color-item bg-theme-purple" data-class="theme-purple"></span>
@@ -100,12 +101,6 @@
           </a>
         </li>
         <li class="menu-item">
-          <a href="#skills" class="menu-link">
-            <span class="icon ti-flag"></span>
-            <span class="caption">Skills</span>
-          </a>
-        </li>
-        <li class="menu-item">
           <a href="#projects" class="menu-link">
             <span class="icon ti-file"></span>
             <span class="caption">Projects</span>
@@ -118,8 +113,14 @@
           </a>
         </li>
         <li class="menu-item">
+          <a href="#skills" class="menu-link">
+            <span class="icon ti-flag"></span>
+            <span class="caption">Skills</span>
+          </a>
+        </li>
+        <li class="menu-item">
           <a href="#contact" class="menu-link">
-            <span class="icon ti-location-pin"></span>
+            <span class="icon ti-email"></span>
             <span class="caption">Contact</span>
           </a>
         </li>
@@ -128,7 +129,7 @@
   </div>
   
   <div class="vg-main-wrapper">
-    <div class="vg-page page-home" id="home" style="background-image: url(../assets/img/cover_photo.jpg);">
+    <div class="vg-page page-home" id="home" style="background-image: url(./assets/img/cover_photo.jpg);">
       <div class="caption wow zoomInUp">
         <h1 class="fw-normal">Welcome</h1>
         <h2>
@@ -146,7 +147,30 @@
         <div class="row">
           <div class="col-md-6">
             <div class="img-place wow zoomIn">
-              <img src="../assets/img/person.jpg" alt="Photo Profile">
+              <img src="./assets/img/person.jpg" alt="Photo Profile">
+            </div>
+            <br>
+            <div style="text-align:center;">
+
+              <span class="iconic">
+                <a href="https://www.linkedin.com/in/tisbuet/" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-linkedin-square fa-fw" style="font-size:32px;color:blue"></i>
+                </a>
+              </span>
+              
+              <span class="iconic">
+                <a href="https://github.com/tisbuet" target="_blank" rel="noopener noreferrer">
+                  <i class="fa fa-github-alt fa-fw" style="font-size:32px;color:black"></i>
+                </a>
+              </span>
+              
+
+              <span class="iconic">
+                <a href="https://scholar.google.com/citations?user=iRSDOrUAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+                  <i class="fa fa-graduation-cap fa-fw" style="font-size:32px;color:rgb(41, 13, 199)"></i>
+                </a>
+              </span>  
+
             </div>
           </div>
           <div class="col-md-6">
@@ -290,69 +314,6 @@
           </div>
         </div>
       </div> <!-- End publication -->
-      
-      <div class="vg-page page-skills" id="skills">
-        <!-- Skills -->
-        <div class="container mt-5">
-          <h1 class="text-center fg-dark wow fadeInUp">My Skills</h1>
-          <div class="row py-3">
-            <div class="col-md-6">
-              <h4 class="wow fadeInUp">Coding skills</h4>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">Python</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
-                </div>
-              </div>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">Matlab</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">85%</div>
-                </div>
-              </div>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">C</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">80%</div>
-                </div>
-              </div>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">Assembly</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <h4 class="wow fadeInUp">Industry Knowledge</h4>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">Automatic Speech Recognition</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">80%</div>
-                </div>
-              </div>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">Dialogue Engine</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 99%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">99%</div>
-                </div>
-              </div>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">Computer Vision</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
-                </div>
-              </div>
-              <div class="progress-wrapper wow fadeInUp">
-                <span class="caption">Agile</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> <!-- End skills -->
-      </div>
     </div> <!-- End page about -->
 
     <!-- Page Service -->
@@ -457,7 +418,7 @@
           <p>Md. Tariqul Islam has been studying in the same institutions with me for more than 6 years. As one of the brightest students 
             in his class he has participated and secured top spots in numerous national and international competitions such as the prestigious 
             VIP cup and so on. He is a hard worker, team player,problem solver and a versatile contributor to any group he is assigned to. 
-            His fields of expertise are signal processing, machine learning and image processing, power & communication. </p>
+            His fields of expertise are signal processing, machine.... </p>
           <span class="iconic">
             <span class="ti-comment-alt"></span>
           </span>
@@ -465,9 +426,11 @@
           <h5>Lecturer, United International University</h5>
         </div>
         <div class="item">
-          <p>I have worked with MD. TARIQUL ISLAM in multiple Machine Learning projects and competitions. He is a very talented individual 
+          <p>
+            I have worked with MD. TARIQUL ISLAM in multiple Machine Learning projects and competitions. He is a very talented individual 
             along with a teamwork mentality. He is experienced to cope with challenging problems. He is a visionary and ambitious research 
-            engineer. I wish him good luck and a successful career in the future.</p>
+            engineer. I wish him good luck and a successful career in the future.
+          </p>
           <span class="iconic">
             <span class="ti-comment-alt"></span>
           </span>
@@ -487,96 +450,76 @@
       </div>
     </div> <!-- End testimonial -->
     
-    <!-- Portfolio page -->
-    <div class="vg-page page-portfolio" id="portfolio">
-      <div class="container">
-        <div class="text-center wow fadeInUp">
-          <div class="badge badge-subhead">Portfolio</div>
+    <div class="vg-page page-skills" id="skills">
+      <!-- Skills -->
+      <div class="container mt-5">
+        <h1 class="text-center fg-dark wow fadeInUp">My Skills</h1>
+        <div class="row py-3">
+          <div class="col-md-6">
+            <h4 class="wow fadeInUp">Coding skills</h4>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Python</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Matlab</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">85%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">C</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">80%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Assembly</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h4 class="wow fadeInUp">Industry Knowledge</h4>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Automatic Speech Recognition</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">80%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Dialogue Engine</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 99%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">99%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Computer Vision</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
+              </div>
+            </div>
+            <div class="progress-wrapper wow fadeInUp">
+              <span class="caption">Agile</span>
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">90%</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <h1 class="text-center fw-normal wow fadeInUp">See my work</h1>
-        <div class="filterable-button py-3 wow fadeInUp" data-toggle="selected">
-          <button class="btn btn-theme-outline selected" data-filter="*">All</button>
-          <button class="btn btn-theme-outline" data-filter=".apps">Apps</button>
-          <button class="btn btn-theme-outline" data-filter=".template">Template</button>
-          <button class="btn btn-theme-outline" data-filter=".ios">IOS</button>
-          <button class="btn btn-theme-outline" data-filter=".ui-ux">UI/UX</button>
-          <button class="btn btn-theme-outline" data-filter=".graphic">Graphic</button>
-          <button class="btn btn-theme-outline" data-filter=".wireframes">Wireframes</button>
-        </div>
+      </div> <!-- End skills -->
+    </div>
 
-        <div class="gridder my-3">
-          <div class="grid-item apps wow zoomIn">
-            <div class="img-place" data-src="../assets/img/work/work-1.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Mobile Travel App</h5> <p>Travel, Discovery</p>">
-              <img src="../assets/img/work/work-1.jpg" alt="">
-              <div class="img-caption">
-                <h5 class="fg-theme">Mobile Travel App</h5>
-                <p>Travel, Discovery</p>
-              </div>
-            </div>
-          </div>
-          <div class="grid-item template wireframes wow zoomIn">
-            <div class="img-place" data-src="../assets/img/work/work-2.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Music App</h5> <p>Musics</p>">
-              <img src="../assets/img/work/work-2.jpg" alt="">
-              <div class="img-caption">
-                <h5 class="fg-theme">Music App</h5>
-                <p>Musics</p>
-              </div>
-            </div>
-          </div>
-          <div class="grid-item apps ios wow zoomIn">
-            <div class="img-place" data-src="../assets/img/work/work-3.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Gaming Dashboard</h5> <p>Games, Streaming</p>">
-              <img src="../assets/img/work/work-3.jpg" alt="">
-              <div class="img-caption">
-                <h5 class="fg-theme">Gaming Dashboard</h5>
-                <p>Games, Streaming</p>
-              </div>
-            </div>
-          </div>
-          <div class="grid-item graphic ui-ux wow zoomIn">
-            <div class="img-place" data-src="../assets/img/work/work-4.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Drugs Delivery App</h5> <p>Health, Drugs</p>">
-              <img src="../assets/img/work/work-4.jpg" alt="">
-              <div class="img-caption">
-                <h5 class="fg-theme">Drugs Delivery App</h5>
-                <p>Health, Drugs</p>
-              </div>
-            </div>
-          </div>
-          <div class="grid-item apps ios wow zoomIn">
-            <div class="img-place" data-src="../assets/img/work/work-5.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Musics Discover</h5> <p>Musics, Dashboard</p>">
-              <img src="../assets/img/work/work-5.jpg" alt="">
-              <div class="img-caption">
-                <h5 class="fg-theme">Musics Discover</h5>
-                <p>Musics, Dashboard</p>
-              </div>
-            </div>
-          </div>
-          <div class="grid-item graphic ui-ux wireframes wow zoomIn">
-            <div class="img-place" data-src="../assets/img/work/work-6.jpg" data-fancybox data-caption="<h5 class='fg-theme'>Game Streaming</h5> <p>Games, Streaming</p>">
-              <img src="../assets/img/work/work-6.jpg" alt="">
-              <div class="img-caption">
-                <h5 class="fg-theme">Game Streaming</h5>
-                <p>Games, Streaming</p>
-              </div>
-            </div>
-          </div>
-        </div> <!-- End gridder -->
-        <div class="text-center wow fadeInUp">
-          <a href="javascript:void(0)" class="btn btn-theme">Load More</a>
-        </div>
-      </div>
-    </div> <!-- End Portfolio page -->
-    
-    <!-- Page Contact -->
-    <div class="vg-page page-contact" id="contact">
-      <h1 class="text-center fg-dark wow fadeInUp">Contact</h1>
-      <div class="container-fluid">
-        <div class="row py-5">
-          <div class="col-lg-7 wow zoomIn">
-            <div class="vg-maps">
-              <div id="google-maps" style="width: 100%; height: 100%;"></div>
-            </div>
-          </div>
-          <div class="col-lg-5">
+    <!-- Footer -->
+    <div class="vg-footer">
+      <div class="container">
+        <div class="row" style="text-align:center;">
+          <div class="col-md-12">
+            <h2>Contact Me</h2>
+            <hr class="divider">
             <form class="vg-contact-form">
               <div class="form-row">
                 <div class="col-12 wow fadeInUp">
@@ -594,64 +537,6 @@
                 <button type="submit" class="btn btn-theme mt-3 wow fadeInUp ml-1">Send Message</button>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-    </div> <!-- End page contact -->
-    
-    <!-- Footer -->
-    <div class="vg-footer">
-      <h1 class="text-center">Contact Me</h1>
-      <div class="container">
-        <div class="row" style="text-align:center;">
-          <div class="col-md-6">
-            <p>Follow me</p>
-            <hr class="divider">
-            <br>
-            <ul class="list-unstyled">
-              <li>
-                <span class="iconic">
-                  <span class="ti-linkedin"></span>
-                </span>
-                <a href="https://www.linkedin.com/in/tisbuet/" target="_blank" rel="noopener noreferrer">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <span class="iconic">
-                  <span class="ti-github"></span>
-                </span>
-                <a href="https://github.com/tisbuet" target="_blank" rel="noopener noreferrer">
-                  Github
-                </a>
-              </li>
-              <li>
-                <span class="iconic">
-                  <span class="ti-google"></span>
-                </span>
-                <a href="https://scholar.google.com/citations?user=iRSDOrUAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
-                  Google Scholar
-                </a>
-              </li>
-              <li>
-                <a href="https://www.researchgate.net/profile/Md-Islam-445" target="_blank" rel="noopener noreferrer">
-                  ResearchGate
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <p>Email me</p>
-            <hr class="divider">
-            <br>
-            <ul class="list-unstyled">
-              <li>tisbuet@gmail.com</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row justify-content-center mt-3">
-          <div class="col-12 mb-3">
-            <h3 class="fw-normal text-center">Be ready, don't wait for an impulse</h3>
           </div>
           <div class="col-12">
             <p class="text-center mb-0 mt-4">Copyright &copy;2020. All right reserved | This template is made with <span class="ti-heart fg-theme-red"></span> by <a href="https://www.macodeid.com/">MACode ID</a></p>
