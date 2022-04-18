@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/tisbuet/tisbuet.github.io/actions">
-    <img alt="Tests Passing" src="https://github.com/tisbuet/tisbuet.github.io/workflows/Test/badge.svg" />
+    <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
   </a>
   <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
     <img src="https://codecov.io/gh/tisbuet/tisbuet.github.io/branch/main/graph/badge.svg" />
