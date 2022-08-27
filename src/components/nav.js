@@ -141,7 +141,7 @@ const StyledList = styled.ol`
 const StyledListItem = styled.li`
   margin: 0 10px;
   position: relative;
-  font-size: ${fontSizes.smi};
+  font-size: ${fontSizes.smil};
   counter-increment: item 1;
   &:before {
     content: '0' counter(item) '.';
