@@ -31,6 +31,7 @@ const theme = {
     smi: '12px',
     sml: '13px',
     sm: '14px',
+    smil: '15px',
     md: '16px',
     lg: '18px',
     xl: '20px',
