@@ -1,13 +1,13 @@
 ---
-date: '6'
+date: '5'
 title: 'COVID-19 mRNA Vaccine Degradation Prediction using Regularized LSTM Model'
-location: 'WIECON-ECE, 2021'
+location: 'IEEE WIECON-ECE, 2020'
 external: 'https://ieeexplore.ieee.org/abstract/document/9398044'
 tech:
-  - openCV
+  - opencv
   - anomaly
-  - Time series analysis
-  - LSTM
+  - time-series-analysis
+  - lstm
   - mRNA
 showInProjects: true
 ---
