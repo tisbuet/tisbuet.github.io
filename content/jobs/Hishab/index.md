@@ -12,4 +12,8 @@ url: 'https://hishab.co/'
 
 - OOV Robust ASR for Handling Bengali proper noun
 
-- Rewarded as Hey Taco Best Performer for the month of [July 2021](https://drive.google.com/file/d/1ltoHdYa-AslD8w1nzFtaz_n_UqaKQjA2/view) & [January 2022](https://drive.google.com/file/d/1wnx4ZM0CDyXneV7W0lBvs54souvSts7F/view?usp=sharing).
+- Development experience using version control system by Git, DVC, AWS or GCP, Docker.
+
+- Experience with software engineering best practices (unit testing, code reviews, clean code)
+
+- Rewarded as Hey Taco Best Performer for the month of [July 2021 & January 2022](https://drive.google.com/file/d/1nyjjTM-rGp2h-OVFHTrJBbhiQDWIYzbS/view).

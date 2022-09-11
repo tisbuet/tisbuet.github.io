@@ -16,7 +16,7 @@ const StyledFlexContainer = styled.div`
   ${media.tablet`display: block;`};
 `;
 const StyledContent = styled.div`
-  width: 60%;
+  width: 80%;
   max-width: 680px;
   ${media.tablet`width: 100%;`};
   a {

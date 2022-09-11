@@ -156,7 +156,7 @@ const StyledListLink = styled(Link)`
 const StyledResumeButton = styled.a`
   ${mixins.smallButton};
   margin-left: 10px;
-  font-size: ${fontSizes.smi};
+  font-size: ${fontSizes.md};
 `;
 
 const DELTA = 5;
@@ -294,7 +294,7 @@ class Nav extends Component {
                 <CSSTransition classNames={fadeDownClass} timeout={timeout}>
                   <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
                     <StyledResumeButton
-                      href="https://drive.google.com/file/d/1efDl-nEZphM68Xvtj7R4K3m9qYAJDeM5/view?usp=sharing"
+                      href="https://drive.google.com/file/d/1DDoNwNGd1_1WGdI7aAchsX59tAO8hq4C/view?usp=sharing"
                       target="_blank"
                       rel="nofollow noopener noreferrer">
                       Resume

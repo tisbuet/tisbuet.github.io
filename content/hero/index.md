@@ -5,4 +5,4 @@ subtitle: 'I love exploring new things!'
 buttonText: 'Contact Me'
 ---
 
-I'm a Machine Learning Engineer (and sometimes football geek) who is passionate about solving real-world problems through developing connections with machines via human intelligence.
+I'm a Machine Learning Engineer (and sometimes football geek, Barça supporter, CAM on the pitch) who passionately hopes to improve the world by bridging the gap between human and machine intelligence to tackle real-world problems. I desire to contribute to the well-being of those in need.
