@@ -120,7 +120,7 @@ const Publications = ({ data }) => {
   return (
     <StyledContainer id="publications">
       <Heading ref={revealTitle}>
-        Publications
+        Publications [Journal articles: 1, Conference articles: 5]
       </Heading>
 
       <div>
