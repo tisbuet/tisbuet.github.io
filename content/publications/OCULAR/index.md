@@ -6,7 +6,7 @@ external: 'https://ieeexplore.ieee.org/document/9065162'
 tech:
   - opencv
   - ocular
-  - opthalmic diseases
+  - opthalmic-diseases-recognition
   - clahe
   - odir '19
 showInProjects: true

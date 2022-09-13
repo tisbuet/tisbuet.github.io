@@ -7,4 +7,4 @@ url: 'https://www.ieeebuetsb.org/'
 ---
 
 - Arranged first ever [2019 IEEE SPS Winter School](https://signalprocessingsociety.org/blog/2019-ieee-sps-winter-school-multimodal-signal-processing) on Multimodal Signal Processing in Bangladesh.
-- We organized numerous seminars, workshops, paper review sessions on emerging technology in the field of Artificial Intelligence.
+- We organized numerous seminars, workshops, paper review sessions on emerging technology in the field of Artificial Intelligence & Signal Processing.

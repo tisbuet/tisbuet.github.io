@@ -147,7 +147,7 @@ const StyledListItem = styled.li`
     content: '0' counter(item) '.';
     text-align: right;
     color: ${colors.green};
-    font-size: ${fontSizes.xs};
+    font-size: ${fontSizes.smi};
   }
 `;
 const StyledListLink = styled(Link)`
@@ -297,7 +297,7 @@ class Nav extends Component {
                       href="https://drive.google.com/file/d/1DDoNwNGd1_1WGdI7aAchsX59tAO8hq4C/view?usp=sharing"
                       target="_blank"
                       rel="nofollow noopener noreferrer">
-                      Resume
+                      CV
                     </StyledResumeButton>
                   </div>
                 </CSSTransition>
