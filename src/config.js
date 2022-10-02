@@ -11,11 +11,11 @@ module.exports = {
   name: 'Md. Tariqul Islam',
   location: 'Chattogram, Bangladesh',
   email: 'tisbuet@gmail.com',
-  github: 'https://github.com/tisbuet',
+  github: 'https://github.com/shuvohishab',
   socialMedia: [
     {
       name: 'GitHub',
-      url: 'https://github.com/tisbuet',
+      url: 'https://github.com/shuvohishab',
     },
     {
       name: 'Linkedin',
