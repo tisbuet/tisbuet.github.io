@@ -14,10 +14,6 @@ module.exports = {
   github: 'https://github.com/shuvohishab',
   socialMedia: [
     {
-      name: 'Google Scholar',
-      url: 'https://scholar.google.com/citations?hl=en&user=iRSDOrUAAAAJ',
-    },
-    {
       name: 'GitHub',
       url: 'https://github.com/shuvohishab',
     },
