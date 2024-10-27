@@ -108,7 +108,11 @@ const StyledProject = styled.div`
 `;
 
 const Publications = ({ data }) => {
-  const publicationsProjects = data.filter(({ node }) => node);
+  const publicationsProjects = data.filter(({ node }) => node).sort((a, b) => {
+    const dateA = parseInt(a.node.frontmatter.date, 10) || 0; // Convert date to integer for comparison
+    const dateB = parseInt(b.node.frontmatter.date, 10) || 0;
+    return dateB - dateA; // Sort descending by date
+  });
 
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
@@ -120,7 +124,7 @@ const Publications = ({ data }) => {
   return (
     <StyledContainer id="publications">
       <Heading ref={revealTitle}>
-        Publications [Journal articles: 1, Conference articles: 5]
+        Publications [Journal articles: 1, Conference articles: 6]
       </Heading>
 
       <div>

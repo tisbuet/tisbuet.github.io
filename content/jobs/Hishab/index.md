@@ -6,9 +6,9 @@ range: 'Feb 2021 - Present'
 url: 'https://hishab.co/'
 ---
 
-- Telephone based voice-banking System Integration
+- Designing E2E LLM based product to solve MFI related services
 
-- Hitachi Due Transaction and Reporting using Bangla VUI
+- Telephone based voice-banking System Integration
 
 - OOV Robust ASR for Handling Bengali proper noun
 

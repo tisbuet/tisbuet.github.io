@@ -2,19 +2,21 @@
 title: 'About Me'
 avatar: 'pro-pic.jpg'
 skills:
-  - Python
   - NLP
-  - Github
+  - LLM
   - Computer Vision
-  - Linux
   - Rasa
+  - Github
+  - NeMo(ASR & TTS)
+  - Linux
+  - Docker
+  - GCP & AWS
+  - redis
   - Agile
-  - kaldi
-  - GCP
-  - nvidia/NeMo
+  - Kafka
 ---
 
-I'm a full-time Machine Learning Engineer at Hishab Ltd. I earned my bachelor's degree from Bangladesh University of Engineering and Technology. I have published five research articles thus far in my academic career, including a journal article published by EURASIP.
+I'm a full-time Machine Learning Engineer at Hishab Ltd. I earned my bachelor's degree from Bangladesh University of Engineering and Technology. I have published seven(7) research articles thus far in my academic career, including a journal article published by EURASIP.
 
 I won awards for my efforts in a number of national and international competitions. The motivation to pursue a career in research in the fields of signal processing and machine learning has grown since attending ICIP 2019, Taiwan, as a finalist in the international competition VIP CUP 2019.
 

@@ -1,5 +1,5 @@
 ---
-date: '1'
+date: '5'
 title: 'Direction of Arrival Estimation through Noise Supression: A Novel Approach using GSC Beamforming and Room Acoustic Simulation'
 location: 'IEEE SPICSCON, 2019'
 external: 'https://ieeexplore.ieee.org/document/9065151'
