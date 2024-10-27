@@ -1,3 +1,4 @@
+import IconGoogleScholar from '@components/icons/scholar'; // Adjust the path accordingly
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
@@ -125,6 +126,15 @@ const Publications = ({ data }) => {
     <StyledContainer id="publications">
       <Heading ref={revealTitle}>
         Publications [Journal articles: 1, Conference articles: 6]
+        <StyledLinkWrapper>
+          <a
+            href="https://scholar.google.com/citations?hl=en&user=iRSDOrUAAAAJ"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Google Scholar">
+            <IconGoogleScholar />
+          </a>
+        </StyledLinkWrapper>
       </Heading>
 
       <div>
