@@ -9,7 +9,7 @@ tech:
   - Unsupervised
   - SP CUP '20
 company: 'BUET'
-showInProjects: true
+showInProjects: false
 ---
 
 Anomaly detection in an automated UAV using provided IMU data
