@@ -31,7 +31,7 @@ const StyledLogo = styled.div`
     margin: 0 auto;
     fill: none;
     user-select: none;
-    #B {
+    #T {
       opacity: 0;
     }
   }
@@ -52,7 +52,7 @@ const Loader = ({ finishLoading }) => {
         strokeDashoffset: [anime.setDashoffset, 0],
       })
       .add({
-        targets: '#logo #B',
+        targets: '#logo #T',
         duration: 700,
         easing: 'easeInOutQuart',
         opacity: 1,
