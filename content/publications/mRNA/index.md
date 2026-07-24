@@ -1,5 +1,6 @@
 ---
 date: '4'
+type: 'conference'
 title: 'COVID-19 mRNA Vaccine Degradation Prediction using Regularized LSTM Model'
 location: 'IEEE WIECON-ECE, 2020'
 external: 'https://ieeexplore.ieee.org/abstract/document/9398044'

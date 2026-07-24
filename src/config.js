@@ -10,6 +10,7 @@ module.exports = {
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
   email: 'tisbuet@gmail.com',
   github: 'https://github.com/shuvohishab',
+  scholarUrl: 'https://scholar.google.co.uk/citations?hl=en&user=iRSDOrUAAAAJ',
   socialMedia: [
     {
       name: 'GitHub',

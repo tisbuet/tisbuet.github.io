@@ -1,11 +1,11 @@
-import IconGoogleScholar from '@components/icons/scholar'; // Adjust the path accordingly
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import sr from '@utils/sr';
-import { srConfig } from '@config';
+import { srConfig, scholarUrl } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
+import { hex2rgba } from '@utils';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
@@ -23,6 +23,13 @@ const StyledContainer = styled(Section)`
   flex-direction: column;
   align-items: flex-start;
 `;
+const StyledBody = styled.div`
+  width: 100%;
+  margin-top: -20px;
+  padding-left: 46px;
+  ${media.tablet`padding-left: 42px;`};
+  ${media.phablet`padding-left: 0;`};
+`;
 const StyledContent = styled.div`
   position: relative;
   grid-column: 1 / 7;
@@ -33,6 +40,41 @@ const StyledContent = styled.div`
     z-index: 5;
   `};
   ${media.phablet`padding: 30px 25px 20px;`};
+`;
+const StyledTotalCitations = styled.p`
+  margin: 0 0 20px;
+  font-family: ${fonts.SFMono};
+  font-size: ${fontSizes.smish};
+  color: ${colors.slate};
+  span {
+    color: ${colors.lightestSlate};
+    font-weight: bold;
+  }
+  a {
+    ${mixins.inlineLink};
+    color: ${colors.green};
+  }
+`;
+const StyledPubTypeLabel = styled.h4`
+  font-size: ${fontSizes.smish};
+  font-weight: normal;
+  color: ${colors.green};
+  font-family: ${fonts.SFMono};
+  margin: 0 0 4px;
+`;
+const StyledCitationBadge = styled.span`
+  display: inline-block;
+  margin-left: 12px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  border: 1px solid ${colors.green};
+  background-color: ${hex2rgba(theme.colors.green, 0.15)};
+  color: ${colors.green};
+  font-family: ${fonts.SFMono};
+  font-size: ${fontSizes.sml};
+  font-weight: bold;
+  white-space: nowrap;
+  vertical-align: middle;
 `;
 const StyledLabel = styled.h4`
   font-size: ${fontSizes.smish};
@@ -49,6 +91,7 @@ const StyledProjectName = styled.h5`
   ${media.tablet`font-size: 24px;`};
   ${media.thone`color: ${colors.white};`};
   a {
+    display: inline;
     ${media.tablet`display: block;`};
   }
 `;
@@ -108,7 +151,7 @@ const StyledProject = styled.div`
   
 `;
 
-const Publications = ({ data }) => {
+const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
   const publicationsProjects = data.filter(({ node }) => node).sort((a, b) => {
     const dateA = parseInt(a.node.frontmatter.date, 10) || 0; // Convert date to integer for comparison
     const dateB = parseInt(b.node.frontmatter.date, 10) || 0;
@@ -125,18 +168,51 @@ const Publications = ({ data }) => {
   return (
     <StyledContainer id="publications">
       <Heading ref={revealTitle}>
-        Publications [Journal articles: 1, Conference articles: 6]
+        Publications & Patents [Journal articles: 1, Conference articles: 6, Patents: 1]
       </Heading>
+      <StyledBody>
+      {citations != null && (
+        <StyledTotalCitations>
+          Total Citations: <span>{citations}</span>
+          {hIndex != null && (
+            <>
+              {' '}
+              &middot; h-index: <span>{hIndex}</span>
+            </>
+          )}
+          {i10Index != null && (
+            <>
+              {' '}
+              &middot; i10-index: <span>{i10Index}</span>
+            </>
+          )}{' '}
+          (<a href={scholarUrl} target="_blank" rel="nofollow noopener noreferrer">
+            Google Scholar profile
+          </a>)
+        </StyledTotalCitations>
+      )}
 
       <div>
         {publicationsProjects &&
           publicationsProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, location, tech} = frontmatter;
+            const {
+              external,
+              title,
+              location,
+              tech,
+              type: pubType,
+              citations: pubCitations,
+            } = frontmatter;
 
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
                 <StyledContent>
+                  {pubType && (
+                    <StyledPubTypeLabel>
+                      {pubType === 'journal' ? 'Journal Article' : 'Conference Paper'}
+                    </StyledPubTypeLabel>
+                  )}
                   <StyledProjectName>
                     {external ? (
                       <a
@@ -144,10 +220,15 @@ const Publications = ({ data }) => {
                         target="_blank"
                         rel="nofollow noopener noreferrer"
                         aria-label="External Link">
-                        {i+1}. {title}
+                        {title}
                       </a>
                     ) : (
                       i, title
+                    )}
+                    {pubCitations != null && (
+                      <StyledCitationBadge>
+                        {pubCitations} {pubCitations === 1 ? 'citation' : 'citations'}
+                      </StyledCitationBadge>
                     )}
                   </StyledProjectName>
                   <p>
@@ -166,12 +247,61 @@ const Publications = ({ data }) => {
             );
           })}
       </div>
+
+      {patents && patents.length > 0 && (
+        <>
+          <StyledLabel>Patents</StyledLabel>
+          <div>
+            {patents.map(({ node }, i) => {
+              const { frontmatter } = node;
+              const { external, title, location, tech, citations: patCitations } = frontmatter;
+
+              return (
+                <StyledProject key={i}>
+                  <StyledContent>
+                    <StyledProjectName>
+                      <a
+                        href={external}
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        aria-label="External Link">
+                        {title}
+                      </a>
+                      {patCitations != null && (
+                        <StyledCitationBadge>
+                          {patCitations} {patCitations === 1 ? 'citation' : 'citations'}
+                        </StyledCitationBadge>
+                      )}
+                    </StyledProjectName>
+                    <p>
+                      <i>{location}</i>
+                    </p>
+                    {tech && (
+                      <StyledTechList>
+                        {tech.map((tech, i) => (
+                          <li key={i}>{tech}</li>
+                        ))}
+                      </StyledTechList>
+                    )}
+                    <ColoredLine />
+                  </StyledContent>
+                </StyledProject>
+              );
+            })}
+          </div>
+        </>
+      )}
+      </StyledBody>
     </StyledContainer>
   );
 };
 
 Publications.propTypes = {
   data: PropTypes.array.isRequired,
+  patents: PropTypes.array,
+  citations: PropTypes.number,
+  hIndex: PropTypes.number,
+  i10Index: PropTypes.number,
 };
 
 export default Publications;

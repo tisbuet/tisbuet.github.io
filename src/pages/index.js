@@ -16,7 +16,13 @@ const IndexPage = ({ location, data }) => (
       <About data={data.about.edges} />
       <Jobs data={data.jobs.edges} />
       <Awards data={data.awards.edges} />
-      <Publications data={data.publications.edges} />
+      <Publications
+        data={data.publications.edges}
+        patents={data.patents.edges}
+        citations={data.scholarProfile.edges[0]?.node.citations}
+        hIndex={data.scholarProfile.edges[0]?.node.hIndex}
+        i10Index={data.scholarProfile.edges[0]?.node.i10Index}
+      />
       <Projects data={data.projects.edges} />
       <Contact data={data.contact.edges} />
     </StyledMainContainer>
@@ -95,7 +101,9 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
+            type
             location
+            citations
             cover {
               childImageSharp {
                 fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#64ffda" }) {
@@ -108,6 +116,29 @@ export const pageQuery = graphql`
             external
           }
           html
+        }
+      }
+    }
+    patents: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/patents/" } }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            location
+            citations
+            tech
+            external
+          }
+          html
+        }
+      }
+    }
+    scholarProfile: allScholarProfile {
+      edges {
+        node {
+          citations
+          hIndex
+          i10Index
         }
       }
     }
