@@ -1,14 +1,12 @@
 ---
 date: '2021-02-08'
-title: 'Machine Learning Engineer(NLP)'
-company: 'Hishab Technologies Ltd.'
+title: 'Senior NLP Engineer'
+company: 'Verbex.ai'
 range: 'Feb 2021 - Present'
-url: 'https://hishab.co/'
+url: 'https://verbex.ai/'
 ---
 
-- Designing E2E LLM based product to solve MFI related services
-
-- Telephone based voice-banking System Integration
+- Building LLM based Text-to-Speech (TTS) systems, including emotional TTS, along with speech denoising and speaker diarization
 
 - OOV Robust ASR for Handling Bengali proper noun
 

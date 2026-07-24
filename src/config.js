@@ -1,15 +1,13 @@
 module.exports = {
-  siteTitle: 'Md. Tariqul Islam | Machine Learning Engineer | Researcher',
+  siteTitle: 'Md. Tariqul Islam | Senior NLP Engineer',
   siteDescription:
-    'Md. Tariqul Islam is a full-time Machine Learning Engineer at Hishab Ltd. who earned his bachelor\'s degree from Bangladesh University of Engineering and Technology. He is now a part-time Master\'s student at the same university doing research on speech processing. He has a wonderful academic career, having published 5 research papers so far in a short period of time, including a journal paper which was published by EURASIP. He competed in several national and international contests and was recognized for his efforts. After visiting ICIP 2019, Taiwan, as a finalist in the international competition VIP CUP 2019, the desire to build a career in research in the field of Signal processing and Machine Learning has increased.',
+    'Md. Tariqul Islam is a full-time Senior NLP Engineer at Verbex Ltd. who earned his bachelor\'s degree from Bangladesh University of Engineering and Technology. He is now a part-time Master\'s student at the same university doing research on speech processing. He has a wonderful academic career, having published 5 research papers so far in a short period of time, including a journal paper which was published by EURASIP. He competed in several national and international contests and was recognized for his efforts. After visiting ICIP 2019, Taiwan, as a finalist in the international competition VIP CUP 2019, the desire to build a career in research in the field of Signal processing and Machine Learning has increased.',
   siteKeywords:
-    'Md. Tariqul Islam, Tariqul, Islam, tisbuet, hishab, Machine Learning Engineer, Researcher',
+    'Md. Tariqul Islam, Tariqul, Islam, tisbuet, Verbex, Senior NLP Engineer, Researcher',
   siteUrl: 'https://tisbuet.github.io/',
   siteLanguage: 'en_US',
   googleAnalyticsID: 'UA-45666519-2',
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
-  name: 'Md. Tariqul Islam',
-  location: 'Chattogram, Bangladesh',
   email: 'tisbuet@gmail.com',
   github: 'https://github.com/shuvohishab',
   socialMedia: [
@@ -52,16 +50,10 @@ module.exports = {
 
   navHeight: 80,
 
-  colors: {
-    green: '#64ffda',
-    navy: '#0a192f',
-    darkNavy: '#020c1b',
-  },
-
-  srConfig: (delay = 150) => ({
+  srConfig: (delay = 50) => ({
     origin: 'bottom',
     distance: '20px',
-    duration: 500,
+    duration: 300,
     delay,
     rotate: { x: 0, y: 0, z: 0 },
     opacity: 0,

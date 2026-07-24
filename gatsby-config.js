@@ -19,8 +19,8 @@ module.exports = {
         name: 'Md. Tariqul Islam',
         short_name: 'tisbuet',
         start_url: '/',
-        background_color: config.colors.darkNavy,
-        theme_color: config.colors.navy,
+        background_color: '#020c1b', // must match theme.js colors.darkNavy
+        theme_color: '#0a192f', // must match theme.js colors.navy
         display: 'minimal-ui',
         icon: 'src/images/logo.png',
       },
@@ -66,7 +66,7 @@ module.exports = {
               maxWidth: 700,
               linkImagesToOriginal: true,
               quality: 90,
-              tracedSVG: { color: config.colors.green },
+              tracedSVG: { color: '#64ffda' }, // must match theme.js colors.green
             },
           },
           {

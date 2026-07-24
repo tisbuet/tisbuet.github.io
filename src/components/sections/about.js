@@ -12,7 +12,7 @@ const StyledContainer = styled(Section)`
 `;
 const StyledFlexContainer = styled.div`
   ${mixins.flexBetween};
-  align-items: flex-start;
+  align-items: center;
   ${media.tablet`display: block;`};
 `;
 const StyledContent = styled.div`
@@ -48,11 +48,13 @@ const Skill = styled.li`
   }
 `;
 const StyledPic = styled.div`
-  position: relative;
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
   width: 40%;
   max-width: 300px;
   margin-left: 60px;
-  ${media.tablet`margin: 60px auto 0;`};
+  ${media.tablet`position: relative; top: 0; transform: none; margin: 60px auto 0;`};
   ${media.phablet`width: 70%;`};
   a {
     &:focus {

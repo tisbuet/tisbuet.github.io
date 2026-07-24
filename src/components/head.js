@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import config from '@config';
+import { theme } from '@styles';
 import ogImage from '@images/og.png';
 
 const Head = ({ metadata }) => (
@@ -37,8 +38,8 @@ const Head = ({ metadata }) => (
     <meta name="twitter:image" content={`${config.siteUrl}${ogImage}`} />
     <meta name="twitter:image:alt" content={metadata.title} />
 
-    <meta name="msapplication-TileColor" content={config.colors.navy} />
-    <meta name="theme-color" content={config.colors.navy} />
+    <meta name="msapplication-TileColor" content={theme.colors.navy} />
+    <meta name="theme-color" content={theme.colors.navy} />
   </Helmet>
 );
 
