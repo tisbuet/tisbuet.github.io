@@ -1,11 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { ComposableMap, Geographies, Geography, Marker, Line } from 'react-simple-maps';
+import rough from 'roughjs';
+import { geoArea, geoEqualEarth, geoPath } from 'd3-geo';
+import { feature } from 'topojson-client';
 import landTopology from 'world-atlas/land-110m.json';
 import styled, { keyframes } from 'styled-components';
 import { hex2rgba } from '@utils';
 import { theme, mixins, media } from '@styles';
 const { colors, fontSizes, fonts } = theme;
+
+const WIDTH = 980;
+const HEIGHT = 480;
 
 const pulse = keyframes`
   from {
@@ -36,6 +41,60 @@ const spreadOverlappingTrips = orderedTrips => {
     };
   });
 };
+
+// Sketching every coastline vertex at full detail balloons roughjs's jittered output
+// into several MB of inline SVG path data. Two trims keep it sane: drop landmasses
+// below an area threshold (tiny islands, invisible at this scale anyway — but the
+// threshold is chosen to stay well under Great Britain's ~0.0058 sr and Taiwan's
+// ~0.0008 sr, the smallest landmasses this site actually pins a trip to), and thin
+// each remaining coastline's vertex count by a fixed stride before feeding it in.
+const LAND_AREA_THRESHOLD = 0.0005;
+const RING_DECIMATION_STRIDE = 8;
+
+const decimateRing = (ring, stride) => {
+  const thinned = [];
+  for (let i = 0; i < ring.length; i += stride) thinned.push(ring[i]);
+  const first = ring[0];
+  const last = thinned[thinned.length - 1];
+  if (!last || last[0] !== first[0] || last[1] !== first[1]) thinned.push(first);
+  // A ring thinned below 4 points is degenerate (d3-geo can't close it) — keep it as-is;
+  // small rings contribute few vertices regardless.
+  return thinned.length < 4 ? ring : thinned;
+};
+
+// A fixed roughjs generator config needs a fixed `seed` per shape — otherwise the
+// sketchy jitter is re-randomized on every render, and would also mismatch between
+// server-rendered HTML and the client's first render (hydration error).
+const roughGenerator = rough.generator();
+const rawLandFeatures = feature(landTopology, landTopology.objects.land).features;
+const landFeature = {
+  type: 'MultiPolygon',
+  coordinates: rawLandFeatures
+    .flatMap(landPiece =>
+      landPiece.geometry.type === 'MultiPolygon'
+        ? landPiece.geometry.coordinates.map(coordinates => ({ type: 'Polygon', coordinates }))
+        : [landPiece.geometry],
+    )
+    .filter(polygon => geoArea(polygon) > LAND_AREA_THRESHOLD)
+    .map(polygon => polygon.coordinates.map(ring => decimateRing(ring, RING_DECIMATION_STRIDE))),
+};
+const projection = geoEqualEarth().fitSize([WIDTH, HEIGHT], landFeature);
+const pathGenerator = geoPath(projection);
+const landPaths = roughGenerator.toPaths(
+  roughGenerator.path(pathGenerator(landFeature), {
+    fill: hex2rgba(colors.green, 0.12),
+    fillStyle: 'hachure',
+    hachureGap: 14,
+    fillWeight: 1,
+    stroke: hex2rgba(colors.green, 0.55),
+    strokeWidth: 1.4,
+    roughness: 1.3,
+    bowing: 1,
+    seed: 1,
+    disableMultiStroke: true,
+    disableMultiStrokeFill: true,
+  }),
+);
 
 const StyledStats = styled.p`
   margin: 0 0 20px;
@@ -78,24 +137,27 @@ const StyledPulseRing = styled.circle`
   animation: ${pulse} 1.8s ease-out infinite;
   pointer-events: none;
 `;
-const StyledPin = styled.circle`
-  fill: ${colors.green};
-  stroke: ${colors.darkNavy};
+const StyledStampRing = styled.circle`
+  fill: ${hex2rgba(colors.darkNavy, 0.75)};
+  stroke: ${colors.green};
   stroke-width: 1.5;
-  r: 5;
+  stroke-dasharray: 3 2.5;
+  r: 8;
   transition: ${theme.transition};
 `;
-const StyledPinNumber = styled.text`
-  fill: ${colors.lightSlate};
-  font-family: ${fonts.SFMono};
-  font-size: 9px;
+const StyledStampDot = styled.circle`
+  fill: ${colors.green};
+  r: 3;
   pointer-events: none;
-  user-select: none;
+  transition: ${theme.transition};
 `;
 const StyledMarkerGroup = styled.g`
   cursor: pointer;
-  &:hover ${StyledPin}, &:focus ${StyledPin} {
-    r: 7;
+  &:hover ${StyledStampRing}, &:focus ${StyledStampRing} {
+    r: 10;
+  }
+  &:hover ${StyledStampDot}, &:focus ${StyledStampDot} {
+    r: 4;
   }
   &:focus {
     outline: none;
@@ -156,7 +218,10 @@ const TravelMap = ({ trips, activeSlug, onSelectTrip }) => {
 
   const orderedTrips = useMemo(() => {
     const mostRecentFirst = [...trips].sort((a, b) => new Date(b.date) - new Date(a.date));
-    return spreadOverlappingTrips(mostRecentFirst);
+    return spreadOverlappingTrips(mostRecentFirst).map(trip => {
+      const [x, y] = projection([trip.lng, trip.lat]);
+      return { ...trip, x, y };
+    });
   }, [trips]);
 
   const displayedSlug = hoveredSlug || activeSlug;
@@ -170,51 +235,16 @@ const TravelMap = ({ trips, activeSlug, onSelectTrip }) => {
         <span>{stats.continents}</span> {stats.continents === 1 ? 'continent' : 'continents'}
       </StyledStats>
       <StyledMapWrapper>
-        <ComposableMap
-          projectionConfig={{ scale: 148 }}
-          width={980}
-          height={480}
-          style={{ width: '100%', height: 'auto' }}>
-          <Geographies geography={landTopology}>
-            {({ geographies }) =>
-              geographies.map(geo => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  style={{
-                    default: {
-                      fill: colors.lightestNavy,
-                      stroke: colors.lightNavy,
-                      strokeWidth: 0.5,
-                      outline: 'none',
-                    },
-                    hover: { fill: colors.lightestNavy, outline: 'none' },
-                    pressed: { fill: colors.lightestNavy, outline: 'none' },
-                  }}
-                />
-              ))
-            }
-          </Geographies>
-          {orderedTrips.slice(0, -1).map((trip, i) => {
-            const next = orderedTrips[i + 1];
-            return (
-              <Line
-                key={`${trip.slug}-to-${next.slug}`}
-                from={[trip.lng, trip.lat]}
-                to={[next.lng, next.lat]}
-                stroke={hex2rgba(colors.green, 0.5)}
-                strokeWidth={1}
-                strokeDasharray="4 3"
-                strokeLinecap="round"
-              />
-            );
-          })}
-          {orderedTrips.map((trip, i) => (
-            <Marker key={trip.slug} coordinates={[trip.lng, trip.lat]}>
+        <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} width="100%" height="auto">
+          {landPaths.map((path, i) => (
+            <path key={i} d={path.d} stroke={path.stroke} strokeWidth={path.strokeWidth} fill="none" />
+          ))}
+          {orderedTrips.map(trip => (
+            <g key={trip.slug} transform={`translate(${trip.x}, ${trip.y})`}>
               <StyledMarkerGroup
                 role="button"
                 tabIndex={0}
-                aria-label={`${i + 1}. ${trip.title}, ${trip.city}, ${trip.country}`}
+                aria-label={`${trip.title}, ${trip.city}, ${trip.country} — visited`}
                 onMouseEnter={() => setHoveredSlug(trip.slug)}
                 onMouseLeave={() => setHoveredSlug(null)}
                 onFocus={() => setHoveredSlug(trip.slug)}
@@ -226,15 +256,13 @@ const TravelMap = ({ trips, activeSlug, onSelectTrip }) => {
                     onSelectTrip(trip.slug);
                   }
                 }}>
-                {displayedSlug === trip.slug && <StyledPulseRing r={5} />}
-                <StyledPin />
-                <StyledPinNumber x={8} y={-7}>
-                  {i + 1}
-                </StyledPinNumber>
+                {displayedSlug === trip.slug && <StyledPulseRing r={9} />}
+                <StyledStampRing />
+                <StyledStampDot />
               </StyledMarkerGroup>
-            </Marker>
+            </g>
           ))}
-        </ComposableMap>
+        </svg>
       </StyledMapWrapper>
       <StyledDetailCard>
         {displayedTrip ? (
