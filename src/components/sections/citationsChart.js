@@ -74,11 +74,12 @@ const CitationsChart = ({ publications, patents }) => {
   if (items.length === 0) return null;
 
   const maxCitations = Math.max(...items.map(item => item.citations), 1);
+  const TRACK_FILL_MAX = 92; // leave headroom so the top value doesn't fill the whole track
 
   return (
     <StyledChart>
       {items.map(({ title, citations, type }, i) => {
-        const widthPct = (citations / maxCitations) * 100;
+        const widthPct = (citations / maxCitations) * TRACK_FILL_MAX;
 
         return (
           <StyledChartRow key={i}>
