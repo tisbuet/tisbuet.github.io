@@ -1,8 +1,8 @@
 ---
 title: 'Hi, my name is'
 name: 'Md. Tariqul Islam'
-subtitle: 'I love exploring new things!'
+subtitle: 'Chasing the click, wherever it leads.'
 buttonText: 'Contact Me'
 ---
 
-I'm an AI engineer (and sometimes football geek, Barça supporter, CAM on the pitch) now stepping into public service as an Assistant Commissioner in the BCS Customs & Excise Cadre. I hope to help build a smarter, more transparent customs administration for Bangladesh.
+I've spent my life chasing the same feeling &mdash; on a pitch, on the road, in a line of code: the moment things click into place. I'm chasing it now in public service too, stepping into the BCS Customs & Excise Cadre to help build a smarter, more transparent customs administration for Bangladesh.
