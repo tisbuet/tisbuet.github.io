@@ -1,0 +1,41 @@
+name: Scheduled rebuild (refresh citation counts)
+
+# Rebuilds and redeploys the site on a schedule so citation counts scraped
+# from Google Scholar at build time stay current without a manual deploy.
+#
+# NOTE: builds from `overhaul/formal-redesign`, the current live source.
+# Once that branch is merged into `code`, update `ref` below to `code`
+# (or remove the `ref:` line to just track this workflow's own branch).
+
+on:
+  schedule:
+    - cron: '0 3 * * 1' # every Monday at 03:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: overhaul/formal-redesign
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn build
+        env:
+          GATSBY_CPU_COUNT: 1
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: main
