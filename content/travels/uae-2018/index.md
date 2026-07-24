@@ -11,6 +11,13 @@ date: '2018-06-01'
 dateDisplay: '2018'
 photos:
   - 'Dubai-2018.JPG'
+  - 'dubai-2018-2.jpg'
+  - 'dubai-2018-3.jpg'
+  - 'dubai-2018-4.jpg'
+  - 'dubai-2018-5.jpg'
+  - 'dubai-2018-6.jpg'
+  - 'dubai-2018-7.jpg'
+  - 'dubai-2018-8.jpg'
 tags: []
 ---
 
