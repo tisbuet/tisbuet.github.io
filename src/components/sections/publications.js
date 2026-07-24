@@ -6,6 +6,7 @@ import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { hex2rgba } from '@utils';
 import { theme, mixins, media, Section, Heading } from '@styles';
+import CitationsChart from './citationsChart';
 const { colors, fontSizes, fonts } = theme;
 
 const PUB_TYPE_FILTERS = [
@@ -259,6 +260,8 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
           </a>)
         </StyledTotalCitations>
       )}
+
+      <CitationsChart publications={publicationsProjects} />
 
       <StyledFilterBar>
         <StyledSearchInput
