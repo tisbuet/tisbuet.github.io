@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
-import { Layout } from '@components';
+import { Layout, Expandable } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Main } from '@styles';
@@ -40,6 +40,36 @@ const StyledNoResults = styled.p`
   color: ${colors.slate};
   font-size: ${fontSizes.smil};
   margin: 20px 0 0;
+`;
+const StyledExpandTrigger = styled.button`
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-right: 10px;
+  color: ${colors.green};
+  font-family: ${fonts.Calibre};
+  font-size: ${fontSizes.xl};
+  line-height: 1;
+  cursor: pointer;
+  &:focus {
+    outline: 0;
+    color: ${colors.lightestSlate};
+  }
+`;
+const StyledExpandableRow = styled.tr`
+  &:hover,
+  &:focus {
+    background-color: transparent !important;
+  }
+  td {
+    padding: 0 20px;
+    ${media.tablet`padding: 0 10px;`};
+  }
+`;
+const StyledExpandableContent = styled.div`
+  color: ${colors.lightSlate};
+  font-size: ${fontSizes.md};
+  line-height: 1.5;
 `;
 const StyledTable = styled.table`
   width: 100%;
@@ -121,6 +151,7 @@ const StyledTable = styled.table`
 const ArchivePage = ({ location, data }) => {
   const projects = data.allMarkdownRemark.edges;
   const [searchQuery, setSearchQuery] = useState('');
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   const query = searchQuery.trim().toLowerCase();
   const filteredProjects = query
@@ -179,50 +210,75 @@ const ArchivePage = ({ location, data }) => {
               {filteredProjects.length > 0 &&
                 filteredProjects.map(({ node }, i) => {
                   const { date, github, external, title, tech, company } = node.frontmatter;
+                  const isOpen = expandedIndex === i;
+                  const panelId = `archive-details-${i}`;
                   return (
-                    <tr key={i} ref={el => (revealProjects.current[i] = el)}>
-                      <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
+                    <React.Fragment key={i}>
+                      <tr ref={el => (revealProjects.current[i] = el)}>
+                        <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
 
-                      <td className="title">{title}</td>
+                        <td className="title">
+                          <StyledExpandTrigger
+                            type="button"
+                            aria-expanded={isOpen}
+                            aria-controls={panelId}
+                            aria-label={isOpen ? 'Collapse details' : 'Expand details'}
+                            onClick={() => setExpandedIndex(isOpen ? null : i)}>
+                            {isOpen ? '−' : '+'}
+                          </StyledExpandTrigger>
+                          {title}
+                        </td>
 
-                      <td className="company hide-on-mobile">
-                        {company ? <span>{company}</span> : <span>—</span>}
-                      </td>
+                        <td className="company hide-on-mobile">
+                          {company ? <span>{company}</span> : <span>—</span>}
+                        </td>
 
-                      <td className="tech hide-on-mobile">
-                        {tech.length > 0 &&
-                          tech.map((item, i) => (
-                            <span key={i}>
-                              {item}
-                              {''}
-                              {i !== tech.length - 1 && <span className="separator">&middot;</span>}
-                            </span>
-                          ))}
-                      </td>
+                        <td className="tech hide-on-mobile">
+                          {tech.length > 0 &&
+                            tech.map((item, i) => (
+                              <span key={i}>
+                                {item}
+                                {''}
+                                {i !== tech.length - 1 && (
+                                  <span className="separator">&middot;</span>
+                                )}
+                              </span>
+                            ))}
+                        </td>
 
-                      <td className="links">
-                        <span>
-                          {external && (
-                            <a
-                              href={external}
-                              target="_blank"
-                              rel="nofollow noopener noreferrer"
-                              aria-label="External Link">
-                              <FormattedIcon name="External" />
-                            </a>
-                          )}
-                          {github && (
-                            <a
-                              href={github}
-                              target="_blank"
-                              rel="nofollow noopener noreferrer"
-                              aria-label="GitHub Link">
-                              <FormattedIcon name="GitHub" />
-                            </a>
-                          )}
-                        </span>
-                      </td>
-                    </tr>
+                        <td className="links">
+                          <span>
+                            {external && (
+                              <a
+                                href={external}
+                                target="_blank"
+                                rel="nofollow noopener noreferrer"
+                                aria-label="External Link">
+                                <FormattedIcon name="External" />
+                              </a>
+                            )}
+                            {github && (
+                              <a
+                                href={github}
+                                target="_blank"
+                                rel="nofollow noopener noreferrer"
+                                aria-label="GitHub Link">
+                                <FormattedIcon name="GitHub" />
+                              </a>
+                            )}
+                          </span>
+                        </td>
+                      </tr>
+                      <StyledExpandableRow>
+                        <td colSpan={5}>
+                          <Expandable isOpen={isOpen} id={panelId}>
+                            <StyledExpandableContent
+                              dangerouslySetInnerHTML={{ __html: node.html }}
+                            />
+                          </Expandable>
+                        </td>
+                      </StyledExpandableRow>
+                    </React.Fragment>
                   );
                 })}
             </tbody>
