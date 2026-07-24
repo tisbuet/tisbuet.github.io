@@ -128,9 +128,34 @@ const StyledTechList = styled.ul`
 const StyledMoreButton = styled(Button)`
   margin: 100px auto 0;
 `;
+const StyledSearchInput = styled.input`
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto 0;
+  padding: 8px 14px;
+  background-color: transparent;
+  border: 1px solid ${colors.lightestNavy};
+  border-radius: ${theme.borderRadius};
+  color: ${colors.lightestSlate};
+  font-family: ${fonts.Calibre};
+  font-size: ${fontSizes.smil};
+  &:focus {
+    outline: 0;
+    border-color: ${colors.green};
+  }
+  &::placeholder {
+    color: ${colors.slate};
+  }
+`;
+const StyledNoResults = styled.p`
+  color: ${colors.slate};
+  font-size: ${fontSizes.smil};
+  margin: 20px auto 0;
+`;
 
 const Projects = ({ data }) => {
   const [showMore, setShowMore] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const revealTitle = useRef(null);
   const revealArchiveLink = useRef(null);
   const revealProjects = useRef([]);
@@ -143,13 +168,35 @@ const Projects = ({ data }) => {
 
   const GRID_LIMIT = 9;
   const projects = data.filter(({ node }) => node);
-  const firstSix = projects.slice(0, GRID_LIMIT);
-  const projectsToShow = showMore ? projects : firstSix;
+  const query = searchQuery.trim().toLowerCase();
+  const filteredProjects = query
+    ? projects.filter(({ node }) => {
+        const { frontmatter } = node;
+        const haystack = [frontmatter.title, frontmatter.company, ...(frontmatter.tech || [])]
+          .filter(Boolean)
+          .join(' ')
+          .toLowerCase();
+        return haystack.includes(query);
+      })
+    : projects;
+  const firstSix = filteredProjects.slice(0, GRID_LIMIT);
+  const projectsToShow = query || showMore ? filteredProjects : firstSix;
 
   return (
     <StyledContainer id="projects">
       <StyledTitle ref={revealTitle}>Other Noteworthy Projects</StyledTitle>
-      
+
+      <StyledSearchInput
+        type="text"
+        placeholder="Search projects..."
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}
+        aria-label="Search projects"
+      />
+
+      {query && filteredProjects.length === 0 && (
+        <StyledNoResults>No projects match your search.</StyledNoResults>
+      )}
 
       <StyledGrid>
         <TransitionGroup className="projects">

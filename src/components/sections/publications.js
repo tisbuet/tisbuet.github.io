@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig, scholarUrl } from '@config';
@@ -7,6 +7,12 @@ import styled from 'styled-components';
 import { hex2rgba } from '@utils';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fontSizes, fonts } = theme;
+
+const PUB_TYPE_FILTERS = [
+  { key: 'all', label: 'All' },
+  { key: 'journal', label: 'Journal' },
+  { key: 'conference', label: 'Conference' },
+];
 
 const ColoredLine = ({}) => (
   <hr
@@ -53,6 +59,57 @@ const StyledTotalCitations = styled.p`
     ${mixins.inlineLink};
     color: ${colors.green};
   }
+`;
+const StyledFilterBar = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+`;
+const StyledSearchInput = styled.input`
+  flex: 1 1 220px;
+  max-width: 320px;
+  padding: 8px 14px;
+  background-color: transparent;
+  border: 1px solid ${colors.lightestNavy};
+  border-radius: ${theme.borderRadius};
+  color: ${colors.lightestSlate};
+  font-family: ${fonts.Calibre};
+  font-size: ${fontSizes.smil};
+  &:focus {
+    outline: 0;
+    border-color: ${colors.green};
+  }
+  &::placeholder {
+    color: ${colors.slate};
+  }
+`;
+const StyledPillGroup = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+const StyledPill = styled.button`
+  padding: 6px 14px;
+  background-color: ${props => (props.$active ? colors.transGreen : 'transparent')};
+  border: 1px solid ${colors.green};
+  border-radius: 20px;
+  color: ${colors.green};
+  font-family: ${fonts.Calibre};
+  font-weight: 600;
+  font-size: ${fontSizes.sml};
+  cursor: pointer;
+  transition: ${theme.transition};
+  &:hover,
+  &:focus {
+    background-color: ${colors.transGreen};
+    outline: 0;
+  }
+`;
+const StyledNoResults = styled.p`
+  color: ${colors.slate};
+  font-size: ${fontSizes.smil};
+  margin: 0 0 30px;
 `;
 const StyledPubTypeLabel = styled.h4`
   font-size: ${fontSizes.smish};
@@ -157,6 +214,18 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
     return dateB - dateA; // Sort descending by date
   });
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeType, setActiveType] = useState('all');
+
+  const query = searchQuery.trim().toLowerCase();
+  const filteredPublications = publicationsProjects.filter(({ node }) => {
+    const { frontmatter } = node;
+    if (activeType !== 'all' && frontmatter.type !== activeType) return false;
+    if (!query) return true;
+    const haystack = [frontmatter.title, ...(frontmatter.tech || [])].join(' ').toLowerCase();
+    return haystack.includes(query);
+  });
+
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
   useEffect(() => {
@@ -191,9 +260,35 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
         </StyledTotalCitations>
       )}
 
+      <StyledFilterBar>
+        <StyledSearchInput
+          type="text"
+          placeholder="Search publications..."
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          aria-label="Search publications"
+        />
+        <StyledPillGroup role="group" aria-label="Filter by publication type">
+          {PUB_TYPE_FILTERS.map(({ key, label }) => (
+            <StyledPill
+              key={key}
+              type="button"
+              aria-pressed={activeType === key}
+              $active={activeType === key}
+              onClick={() => setActiveType(key)}>
+              {label}
+            </StyledPill>
+          ))}
+        </StyledPillGroup>
+      </StyledFilterBar>
+
+      {filteredPublications.length === 0 && (
+        <StyledNoResults>No publications match your search.</StyledNoResults>
+      )}
+
       <div>
-        {publicationsProjects &&
-          publicationsProjects.map(({ node }, i) => {
+        {filteredPublications &&
+          filteredPublications.map(({ node }, i) => {
             const { frontmatter, html } = node;
             const {
               external,

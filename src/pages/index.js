@@ -167,6 +167,7 @@ export const pageQuery = graphql`
             tech
             github
             external
+            company
           }
           html
         }

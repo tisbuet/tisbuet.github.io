@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
@@ -16,6 +16,30 @@ const StyledTableContainer = styled.div`
   ${media.tablet`
     margin: 100px -10px;
   `};
+`;
+const StyledSearchInput = styled.input`
+  width: 100%;
+  max-width: 320px;
+  margin-top: 20px;
+  padding: 8px 14px;
+  background-color: transparent;
+  border: 1px solid ${colors.lightestNavy};
+  border-radius: ${theme.borderRadius};
+  color: ${colors.lightestSlate};
+  font-family: ${fonts.Calibre};
+  font-size: ${fontSizes.smil};
+  &:focus {
+    outline: 0;
+    border-color: ${colors.green};
+  }
+  &::placeholder {
+    color: ${colors.slate};
+  }
+`;
+const StyledNoResults = styled.p`
+  color: ${colors.slate};
+  font-size: ${fontSizes.smil};
+  margin: 20px 0 0;
 `;
 const StyledTable = styled.table`
   width: 100%;
@@ -96,6 +120,16 @@ const StyledTable = styled.table`
 
 const ArchivePage = ({ location, data }) => {
   const projects = data.allMarkdownRemark.edges;
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const query = searchQuery.trim().toLowerCase();
+  const filteredProjects = query
+    ? projects.filter(({ node }) => {
+        const { title, company, tech } = node.frontmatter;
+        const haystack = [title, company, ...(tech || [])].filter(Boolean).join(' ').toLowerCase();
+        return haystack.includes(query);
+      })
+    : projects;
 
   const revealTitle = useRef(null);
   const revealTable = useRef(null);
@@ -117,7 +151,18 @@ const ArchivePage = ({ location, data }) => {
         <header ref={revealTitle}>
           <h1 className="big-title">Archive</h1>
           <p className="subtitle">A big list of things I’ve worked on</p>
+          <StyledSearchInput
+            type="text"
+            placeholder="Search projects..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            aria-label="Search projects"
+          />
         </header>
+
+        {query && filteredProjects.length === 0 && (
+          <StyledNoResults>No projects match your search.</StyledNoResults>
+        )}
 
         <StyledTableContainer ref={revealTable}>
           <StyledTable>
@@ -131,8 +176,8 @@ const ArchivePage = ({ location, data }) => {
               </tr>
             </thead>
             <tbody>
-              {projects.length > 0 &&
-                projects.map(({ node }, i) => {
+              {filteredProjects.length > 0 &&
+                filteredProjects.map(({ node }, i) => {
                   const { date, github, external, title, tech, company } = node.frontmatter;
                   return (
                     <tr key={i} ref={el => (revealProjects.current[i] = el)}>
