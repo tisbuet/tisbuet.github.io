@@ -2,11 +2,6 @@
 # yarn lockfile v1
 
 
-"17@0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/17/-/17-0.0.0.tgz#cc7d74bdc7ff8018ade789c05a45981e5122904b"
-  integrity sha512-V0qHRdclvKnr7MquWZq/xVUSPMyA55QmPfAaYqcI9BlsIB6JkxKEtgV1XOxldIT5qz/CkpGat60iMC/IBnsjTw==
-
 "@ampproject/remapping@^2.2.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.3.0.tgz#ed441b6fa600072520ce18b43d2c8cc8caecc7f4"
@@ -8573,11 +8568,6 @@ node-addon-api@^7.0.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-7.1.1.tgz#1aba6693b0f255258a049d621329329322aad558"
   integrity sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==
 
-node-bin-setup@^1.0.0:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.1.3.tgz#d45d5220e3b2ecc3a94263a56116f727f6c1bb14"
-  integrity sha512-opgw9iSCAzT2+6wJOETCpeRYAQxSopqQ2z+N6BXwIMsQQ7Zj5M8MaafQY8JMlolRR6R1UXg2WmhKp0p9lSOivg==
-
 node-fetch@^2.6.12, node-fetch@^2.6.6, node-fetch@^2.6.7:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.7.0.tgz#d0f0fa6e3e2dc1d27efcd8ad99d550bda94d187d"
@@ -8619,13 +8609,6 @@ node-releases@^2.0.18:
   version "2.0.18"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.18.tgz#f010e8d35e2fe8d6b2944f03f70213ecedc4ca3f"
   integrity sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==
-
-node@^17.7.2:
-  version "17.9.1"
-  resolved "https://registry.yarnpkg.com/node/-/node-17.9.1.tgz#2f6094597b22e8d56c57c129bb88c91aa17c15b2"
-  integrity sha512-Jmv4WrsWcZI6/SEUF6G0+9R73yQnVN/9VQnqkC1s/VJrxUkwyCodnOQLvXEVqfh13RNeHpFO92cWxjV0TB5Rww==
-  dependencies:
-    node-bin-setup "^1.0.0"
 
 normalize-package-data@^2.5.0:
   version "2.5.0"

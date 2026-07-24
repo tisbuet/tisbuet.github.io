@@ -1,6 +1,6 @@
 ---
 title: 'About Me'
-avatar: 'pro-pic.jpg'
+avatar: 'pro-pic-2.jpg'
 skills:
   - NLP
   - LLM
