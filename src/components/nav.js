@@ -275,9 +275,7 @@ class Nav extends Component {
                   navLinks &&
                   navLinks.map(({ url, name }, i) => (
                     <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
-                      <StyledListItem
-                        key={i}
-                        style={{ transitionDelay: `${isHome ? i * 60 : 0}ms` }}>
+                      <StyledListItem key={i}>
                         <StyledListLink to={url}>{name}</StyledListLink>
                       </StyledListItem>
                     </CSSTransition>
@@ -288,7 +286,7 @@ class Nav extends Component {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeDownClass} timeout={timeout}>
-                  <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
+                  <div>
                     <StyledResumeButton
                       href="https://drive.google.com/file/d/1IcI0-_RC7c0HcXDXbcomttuWmSb2Mfjb/view?usp=sharing"
                       target="_blank"

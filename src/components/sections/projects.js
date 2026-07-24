@@ -163,7 +163,7 @@ const Projects = ({ data }) => {
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealArchiveLink.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 50)));
+    revealProjects.current.forEach(ref => sr.reveal(ref, srConfig()));
   }, []);
 
   const GRID_LIMIT = 9;
@@ -205,18 +205,8 @@ const Projects = ({ data }) => {
               const { frontmatter, html } = node;
               const { github, external, title, tech } = frontmatter;
               return (
-                <CSSTransition
-                  key={i}
-                  classNames="fadeup"
-                  timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                  exit={false}>
-                  <StyledProject
-                    key={i}
-                    ref={el => (revealProjects.current[i] = el)}
-                    tabIndex="0"
-                    style={{
-                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                    }}>
+                <CSSTransition key={i} classNames="fadeup" timeout={300} exit={false}>
+                  <StyledProject key={i} ref={el => (revealProjects.current[i] = el)} tabIndex="0">
                     <StyledProjectInner>
                       <header>
                         <StyledProjectHeader>

@@ -300,7 +300,7 @@ const TravelsPage = ({ location, data }) => {
   const revealCards = useRef([]);
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
-    revealCards.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 50)));
+    revealCards.current.forEach(ref => sr.reveal(ref, srConfig()));
   }, []);
 
   return (

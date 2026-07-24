@@ -211,7 +211,7 @@ const Awards = ({ data }) => {
   const revealProjects = useRef([]);
   useEffect(() => {
     sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 50)));
+    revealProjects.current.forEach(ref => sr.reveal(ref, srConfig()));
   }, []);
 
   return (
