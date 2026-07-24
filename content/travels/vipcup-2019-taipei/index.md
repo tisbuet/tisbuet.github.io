@@ -10,10 +10,10 @@ lng: 121.5654
 date: '2019-09-22'
 dateDisplay: 'September 2019'
 photos:
-  - 'cover.jpg'
   - 'taiwan-2019-1.JPG'
   - 'taiwan-2019-2.JPG'
   - 'taiwan-2019-3.JPG'
+  - 'cover.jpg'
   - 'taiwan-4.jpeg'
   - 'taiwan-2019-5.JPG'
 tags:
