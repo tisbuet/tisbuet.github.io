@@ -51,11 +51,11 @@ module.exports = {
 
   navHeight: 80,
 
-  srConfig: (delay = 50) => ({
+  srConfig: () => ({
     origin: 'bottom',
-    distance: '20px',
-    duration: 300,
-    delay,
+    distance: '0px',
+    duration: 0,
+    delay: 0,
     rotate: { x: 0, y: 0, z: 0 },
     opacity: 0,
     scale: 1,
