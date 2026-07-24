@@ -211,9 +211,9 @@ const StyledProject = styled.div`
 
 const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
   const publicationsProjects = data.filter(({ node }) => node).sort((a, b) => {
-    const dateA = parseInt(a.node.frontmatter.date, 10) || 0; // Convert date to integer for comparison
-    const dateB = parseInt(b.node.frontmatter.date, 10) || 0;
-    return dateB - dateA; // Sort descending by date
+    const citationsA = a.node.frontmatter.citations ?? -1;
+    const citationsB = b.node.frontmatter.citations ?? -1;
+    return citationsB - citationsA; // Sort descending by citation count
   });
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -227,13 +227,19 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
     const haystack = [frontmatter.title, ...(frontmatter.tech || [])].join(' ').toLowerCase();
     return haystack.includes(query);
   });
-  const filteredPatents = (patents || []).filter(({ node }) => {
-    if (activeType !== 'all' && activeType !== 'patent') return false;
-    if (!query) return true;
-    const { frontmatter } = node;
-    const haystack = [frontmatter.title, ...(frontmatter.tech || [])].join(' ').toLowerCase();
-    return haystack.includes(query);
-  });
+  const filteredPatents = (patents || [])
+    .filter(({ node }) => {
+      if (activeType !== 'all' && activeType !== 'patent') return false;
+      if (!query) return true;
+      const { frontmatter } = node;
+      const haystack = [frontmatter.title, ...(frontmatter.tech || [])].join(' ').toLowerCase();
+      return haystack.includes(query);
+    })
+    .sort((a, b) => {
+      const citationsA = a.node.frontmatter.citations ?? -1;
+      const citationsB = b.node.frontmatter.citations ?? -1;
+      return citationsB - citationsA;
+    });
 
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
