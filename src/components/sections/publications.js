@@ -168,7 +168,7 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
   return (
     <StyledContainer id="publications">
       <Heading ref={revealTitle}>
-        Publications & Patents [Journal articles: 1, Conference articles: 6, Patents: 1]
+        Publications & Patents [Patents: 1, Journal articles: 1, Conference articles: 6]
       </Heading>
       <StyledBody>
       {citations != null && (
