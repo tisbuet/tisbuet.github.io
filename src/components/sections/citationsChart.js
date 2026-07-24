@@ -17,6 +17,11 @@ const StyledChartTitle = styled.div`
   color: ${colors.lightSlate};
   margin-bottom: 4px;
 `;
+const StyledChartTypeLabel = styled.span`
+  color: ${colors.green};
+  font-weight: 600;
+  margin-right: 6px;
+`;
 const StyledChartBar = styled.div`
   display: flex;
   align-items: center;
@@ -44,24 +49,43 @@ const StyledChartValue = styled.span`
   white-space: nowrap;
 `;
 
-const CitationsChart = ({ publications }) => {
-  const ranked = publications
-    .filter(({ node }) => node.frontmatter.citations != null)
-    .sort((a, b) => b.node.frontmatter.citations - a.node.frontmatter.citations);
+const TYPE_LABELS = {
+  journal: 'Journal',
+  conference: 'Conference',
+  patent: 'Patent',
+};
 
-  if (ranked.length === 0) return null;
+const CitationsChart = ({ publications, patents }) => {
+  const items = [
+    ...publications.map(({ node }) => ({
+      title: node.frontmatter.title,
+      citations: node.frontmatter.citations,
+      type: node.frontmatter.type,
+    })),
+    ...(patents || []).map(({ node }) => ({
+      title: node.frontmatter.title,
+      citations: node.frontmatter.citations,
+      type: 'patent',
+    })),
+  ]
+    .filter(item => item.citations != null)
+    .sort((a, b) => b.citations - a.citations);
 
-  const maxCitations = Math.max(...ranked.map(({ node }) => node.frontmatter.citations), 1);
+  if (items.length === 0) return null;
+
+  const maxCitations = Math.max(...items.map(item => item.citations), 1);
 
   return (
     <StyledChart>
-      {ranked.map(({ node }, i) => {
-        const { title, citations } = node.frontmatter;
+      {items.map(({ title, citations, type }, i) => {
         const widthPct = (citations / maxCitations) * 100;
 
         return (
           <StyledChartRow key={i}>
-            <StyledChartTitle>{title}</StyledChartTitle>
+            <StyledChartTitle>
+              <StyledChartTypeLabel>{TYPE_LABELS[type] || 'Publication'}</StyledChartTypeLabel>
+              {title}
+            </StyledChartTitle>
             <StyledChartBar>
               <StyledChartTrack>
                 <StyledChartFill style={{ width: `${widthPct}%` }} />
@@ -79,6 +103,7 @@ const CitationsChart = ({ publications }) => {
 
 CitationsChart.propTypes = {
   publications: PropTypes.array.isRequired,
+  patents: PropTypes.array,
 };
 
 export default CitationsChart;

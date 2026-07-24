@@ -11,6 +11,7 @@ const { colors, fontSizes, fonts } = theme;
 
 const PUB_TYPE_FILTERS = [
   { key: 'all', label: 'All' },
+  { key: 'patent', label: 'Patent' },
   { key: 'journal', label: 'Journal' },
   { key: 'conference', label: 'Conference' },
 ];
@@ -226,6 +227,13 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
     const haystack = [frontmatter.title, ...(frontmatter.tech || [])].join(' ').toLowerCase();
     return haystack.includes(query);
   });
+  const filteredPatents = (patents || []).filter(({ node }) => {
+    if (activeType !== 'all' && activeType !== 'patent') return false;
+    if (!query) return true;
+    const { frontmatter } = node;
+    const haystack = [frontmatter.title, ...(frontmatter.tech || [])].join(' ').toLowerCase();
+    return haystack.includes(query);
+  });
 
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
@@ -261,7 +269,7 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
         </StyledTotalCitations>
       )}
 
-      <CitationsChart publications={publicationsProjects} />
+      <CitationsChart publications={publicationsProjects} patents={patents} />
 
       <StyledFilterBar>
         <StyledSearchInput
@@ -285,8 +293,8 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
         </StyledPillGroup>
       </StyledFilterBar>
 
-      {filteredPublications.length === 0 && (
-        <StyledNoResults>No publications match your search.</StyledNoResults>
+      {filteredPublications.length === 0 && filteredPatents.length === 0 && (
+        <StyledNoResults>No publications or patents match your search.</StyledNoResults>
       )}
 
       <div>
@@ -345,11 +353,11 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
           })}
       </div>
 
-      {patents && patents.length > 0 && (
+      {filteredPatents.length > 0 && (
         <>
           <StyledLabel>Patents</StyledLabel>
           <div>
-            {patents.map(({ node }, i) => {
+            {filteredPatents.map(({ node }, i) => {
               const { frontmatter } = node;
               const { external, title, location, tech, citations: patCitations } = frontmatter;
 

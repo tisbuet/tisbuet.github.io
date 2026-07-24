@@ -1,6 +1,6 @@
 ---
-date: '2024-10-01'
-title: 'LLM based MFI call service agent'
+date: '2026-01-17'
+title: 'LLM-based TTS Systems'
 github: ''
 external: ''
 tech:
@@ -12,4 +12,4 @@ company: 'Hishab'
 showInProjects: true
 ---
 
-LLM based dialogue engine used in automation of call service agent to provide MFI services and FAQs.
+LLM based Text-to-Speech (TTS) systems, including emotional TTS, along with speech denoising and speaker diarization.
