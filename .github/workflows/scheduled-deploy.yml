@@ -3,14 +3,12 @@ name: Scheduled rebuild (refresh citation counts)
 # Rebuilds and redeploys the site on a schedule so citation counts scraped
 # from Google Scholar at build time stay current without a manual deploy.
 #
-# This lives on `overhaul/formal-redesign` because that is the branch
-# GitHub reads scheduled-workflow files from once it is set as the repo's
-# default branch. If this branch is later merged into (or replaced by)
-# another branch, move this file there and make that branch the default.
+# GitHub only recognizes `schedule:` triggers from a workflow file on the
+# repo's default branch, so keep this file on whichever branch that is.
 
 on:
   schedule:
-    - cron: '0 3 * * 1' # every Monday at 03:00 UTC
+    - cron: '0 18 * * 0' # every Monday 12:00 AM BDT (UTC+6) = Sunday 18:00 UTC
   workflow_dispatch: {}
 
 permissions:
