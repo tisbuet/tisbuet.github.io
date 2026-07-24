@@ -12,7 +12,8 @@ const IconGoogleScholar = () => (
     strokeLinejoin="round"
     className="feather feather-google-scholar">
     <title>Google Scholar</title>
-    <path d="M12 2L2 22h20L12 2zm0 10v4m-2-2h4"></path>
+    <path d="M22 10L12 5 2 10l10 5 10-5z"></path>
+    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
   </svg>
 );
 

@@ -37,8 +37,7 @@ const StyledNav = styled.nav`
   position: relative;
   width: 100%;
   color: ${colors.lightestSlate};
-  font-family: ${fonts.SFMono};
-  counter-reset: item 0;
+  font-family: ${fonts.Calibre};
   z-index: 12;
 `;
 const StyledLogo = styled.div`
@@ -142,13 +141,6 @@ const StyledListItem = styled.li`
   margin: 0 10px;
   position: relative;
   font-size: ${fontSizes.smil};
-  counter-increment: item 1;
-  &:before {
-    content: '0' counter(item) '.';
-    text-align: right;
-    color: ${colors.green};
-    font-size: ${fontSizes.smi};
-  }
 `;
 const StyledListLink = styled(Link)`
   padding: 12px 10px;
@@ -170,21 +162,25 @@ class Nav extends Component {
   };
 
   componentDidMount() {
+    this.throttledScroll = throttle(this.handleScroll);
+    this.throttledResize = throttle(this.handleResize);
+    this.boundKeydown = e => this.handleKeydown(e);
+
     setTimeout(
       () =>
         this.setState({ isMounted: true }, () => {
-          window.addEventListener('scroll', () => throttle(this.handleScroll()));
-          window.addEventListener('resize', () => throttle(this.handleResize()));
-          window.addEventListener('keydown', e => this.handleKeydown(e));
+          window.addEventListener('scroll', this.throttledScroll);
+          window.addEventListener('resize', this.throttledResize);
+          window.addEventListener('keydown', this.boundKeydown);
         }),
       100,
     );
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', () => this.handleScroll());
-    window.removeEventListener('resize', () => this.handleResize());
-    window.removeEventListener('keydown', e => this.handleKeydown(e));
+    window.removeEventListener('scroll', this.throttledScroll);
+    window.removeEventListener('resize', this.throttledResize);
+    window.removeEventListener('keydown', this.boundKeydown);
   }
 
   toggleMenu = () => this.setState({ menuOpen: !this.state.menuOpen });

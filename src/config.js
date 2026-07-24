@@ -13,12 +13,16 @@ module.exports = {
   scholarUrl: 'https://scholar.google.co.uk/citations?hl=en&user=iRSDOrUAAAAJ',
   socialMedia: [
     {
-      name: 'GitHub',
-      url: 'https://github.com/shuvohishab',
-    },
-    {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/tisbuet/',
+    },
+    {
+      name: 'GoogleScholar',
+      url: 'https://scholar.google.co.uk/citations?hl=en&user=iRSDOrUAAAAJ',
+    },
+    {
+      name: 'GitHub',
+      url: 'https://github.com/shuvohishab',
     },
   ],
 
