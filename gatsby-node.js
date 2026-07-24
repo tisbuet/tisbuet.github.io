@@ -53,7 +53,7 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest, repor
 
       // The stats table lists 6 cells in order: Citations(All, Since), h-index(All, Since), i10-index(All, Since)
       const statValues = [...html.matchAll(/<td class="gsc_rsb_std">(\d+)<\/td>/g)].map(m =>
-        parseInt(m[1], 10)
+        parseInt(m[1], 10),
       );
       if (statValues.length >= 5) {
         [citations, , hIndex, , i10Index] = statValues;
@@ -119,12 +119,12 @@ exports.createResolvers = ({ createResolvers }) => {
     MarkdownRemarkFrontmatter: {
       citations: {
         type: 'Int',
-        resolve(source, args, context) {
+        async resolve(source, args, context) {
           if (!source.title) return null;
           const target = normalizeScholarTitle(source.title);
-          const scholarPubs = context.nodeModel.getAllNodes({ type: 'ScholarPublication' });
-          const match = scholarPubs.find(
-            pub => pub.scholarTitle && normalizeScholarTitle(pub.scholarTitle) === target
+          const { entries } = await context.nodeModel.findAll({ type: 'ScholarPublication' });
+          const match = Array.from(entries).find(
+            pub => pub.scholarTitle && normalizeScholarTitle(pub.scholarTitle) === target,
           );
           return match ? match.citations : null;
         },
@@ -142,7 +142,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     {
       postsRemark: allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/posts/" } }
-        sort: { order: DESC, fields: [frontmatter___date] }
+        sort: { frontmatter: { date: DESC } }
         limit: 1000
       ) {
         edges {
@@ -154,7 +154,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         }
       }
       tagsGroup: allMarkdownRemark(limit: 2000) {
-        group(field: frontmatter___tags) {
+        group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
         }
       }
