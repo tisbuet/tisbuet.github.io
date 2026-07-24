@@ -17,6 +17,16 @@ const floatFade = keyframes`
     transform: translateY(-50%) translateX(-5px);
   }
 `;
+const ringPulse = keyframes`
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+`;
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -54,12 +64,27 @@ const StyledFab = styled(Link)`
   svg {
     width: 22px;
     height: 22px;
+    transition: ${theme.transition};
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid ${colors.green};
+    animation: ${ringPulse} 2.2s ease-out infinite;
+    pointer-events: none;
   }
 
   &:hover,
   &:focus {
     transform: translateY(-3px);
     background-color: ${colors.transGreen};
+
+    svg {
+      transform: translateX(2px) translateY(-2px);
+    }
   }
 
   ${media.tablet`
