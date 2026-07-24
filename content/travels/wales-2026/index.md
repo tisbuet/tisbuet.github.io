@@ -10,14 +10,14 @@ lng: -3.1791
 date: '2026-05-01'
 dateDisplay: 'May 2026'
 photos:
-  - 'wales-1.jpg'
-  - 'wales-2.jpg'
   - 'wales-3.jpg'
   - 'wales-4.jpg'
   - 'wales-5.jpg'
   - 'wales-6.jpg'
-  - 'wales-7.jpg'
   - 'wales-8.jpg'
+  - 'wales-7.jpg'
+  - 'wales-1.jpg'
+  - 'wales-2.jpg'
 tags: []
 ---
 
