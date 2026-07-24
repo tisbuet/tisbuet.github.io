@@ -38,7 +38,7 @@ const spreadOverlappingTrips = orderedTrips => {
 };
 
 const StyledStats = styled.p`
-  margin: 0 0 4px;
+  margin: 0 0 20px;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
   color: ${colors.slate};
@@ -46,11 +46,6 @@ const StyledStats = styled.p`
     color: ${colors.lightestSlate};
     font-weight: bold;
   }
-`;
-const StyledCaption = styled.p`
-  margin: 0 0 20px;
-  font-size: ${fontSizes.xs};
-  color: ${colors.slate};
 `;
 const StyledMapWrapper = styled.div`
   ${mixins.boxShadow};
@@ -174,9 +169,6 @@ const TravelMap = ({ trips, activeSlug, onSelectTrip }) => {
         <span>{stats.countries}</span> {stats.countries === 1 ? 'country' : 'countries'} &middot;{' '}
         <span>{stats.continents}</span> {stats.continents === 1 ? 'continent' : 'continents'}
       </StyledStats>
-      <StyledCaption>
-        Numbered most recent to oldest &middot; dashed line traces the route
-      </StyledCaption>
       <StyledMapWrapper>
         <ComposableMap
           projectionConfig={{ scale: 148 }}
