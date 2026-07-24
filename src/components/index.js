@@ -6,6 +6,7 @@ export { default as Menu } from './menu';
 export { default as Side } from './side';
 export { default as Social } from './social';
 export { default as Email } from './email';
+export { default as TravelFab } from './travelFab';
 export { default as Footer } from './footer';
 export { default as Expandable } from './expandable';
 export { default as Hero } from './sections/hero';

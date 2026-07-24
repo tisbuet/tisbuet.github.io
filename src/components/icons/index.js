@@ -11,6 +11,7 @@ export { default as IconLinkedin } from './linkedin';
 export { default as IconLoader } from './loader';
 export { default as IconLocation } from './location';
 export { default as IconLogo } from './logo';
+export { default as IconPlane } from './plane';
 export { default as IconPlayStore } from './playstore';
 export { default as IconStar } from './star';
 export { default as IconTwitter } from './twitter';
