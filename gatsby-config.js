@@ -67,7 +67,7 @@ module.exports = {
               maxWidth: 700,
               linkImagesToOriginal: true,
               quality: 90,
-              tracedSVG: { color: '#64ffda' }, // must match theme.js colors.green
+              tracedSVG: { color: '#c9a227' }, // must match theme.js colors.green
             },
           },
           {

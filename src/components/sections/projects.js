@@ -26,7 +26,7 @@ const StyledTitle = styled.h4`
 const StyledArchiveLink = styled(Link)`
   ${mixins.inlineLink};
   text-align: center;
-  border: 2px solid green;
+  border: 2px solid ${colors.green};
   margin: 20px auto;
   font-family: ${fonts.SFMono};
   font-size: 16px;

@@ -18,16 +18,13 @@ const StyledHeading = styled(Heading)`
   display: block;
   color: ${colors.green};
   font-size: ${fontSizes.md};
-  font-family: ${fonts.SFMono};
-  font-weight: normal;
+  font-family: ${fonts.Calibre};
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   margin-bottom: 20px;
   justify-content: center;
   ${media.desktop`font-size: ${fontSizes.sm};`};
-  &:before {
-    bottom: 0;
-    font-size: ${fontSizes.sm};
-    ${media.desktop`font-size: ${fontSizes.smish};`};
-  }
   &:after {
     display: none;
   }

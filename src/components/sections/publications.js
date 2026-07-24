@@ -69,7 +69,7 @@ const StyledCitationBadge = styled.span`
   border: 1px solid ${colors.green};
   background-color: ${hex2rgba(theme.colors.green, 0.15)};
   color: ${colors.green};
-  font-family: ${fonts.SFMono};
+  font-family: ${fonts.Calibre};
   font-size: ${fontSizes.sml};
   font-weight: bold;
   white-space: nowrap;

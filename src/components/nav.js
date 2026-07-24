@@ -37,8 +37,7 @@ const StyledNav = styled.nav`
   position: relative;
   width: 100%;
   color: ${colors.lightestSlate};
-  font-family: ${fonts.SFMono};
-  counter-reset: item 0;
+  font-family: ${fonts.Calibre};
   z-index: 12;
 `;
 const StyledLogo = styled.div`
@@ -142,13 +141,6 @@ const StyledListItem = styled.li`
   margin: 0 10px;
   position: relative;
   font-size: ${fontSizes.smil};
-  counter-increment: item 1;
-  &:before {
-    content: '0' counter(item) '.';
-    text-align: right;
-    color: ${colors.green};
-    font-size: ${fontSizes.smi};
-  }
 `;
 const StyledListLink = styled(Link)`
   padding: 12px 10px;

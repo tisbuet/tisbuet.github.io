@@ -22,8 +22,10 @@ const StyledOverline = styled.h1`
   color: ${colors.green};
   margin: 0 0 20px 3px;
   font-size: ${fontSizes.md};
-  font-family: ${fonts.SFMono};
-  font-weight: normal;
+  font-family: ${fonts.Calibre};
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   ${media.desktop`font-size: ${fontSizes.sm};`};
   ${media.tablet`font-size: ${fontSizes.smish};`};
 `;

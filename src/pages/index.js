@@ -2,16 +2,11 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Layout, Hero, About, Awards, Publications, Jobs, Projects, Contact } from '@components';
-import styled from 'styled-components';
 import { Main } from '@styles';
-
-const StyledMainContainer = styled(Main)`
-  counter-reset: section;
-`;
 
 const IndexPage = ({ location, data }) => (
   <Layout location={location}>
-    <StyledMainContainer className="fillHeight">
+    <Main className="fillHeight">
       <Hero data={data.hero.edges} />
       <About data={data.about.edges} />
       <Jobs data={data.jobs.edges} />
@@ -25,7 +20,7 @@ const IndexPage = ({ location, data }) => (
       />
       <Projects data={data.projects.edges} />
       <Contact data={data.contact.edges} />
-    </StyledMainContainer>
+    </Main>
   </Layout>
 );
 
@@ -58,7 +53,7 @@ export const pageQuery = graphql`
             title
             avatar {
               childImageSharp {
-                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#64ffda" }) {
+                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#c9a227" }) {
                   ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
@@ -80,7 +75,7 @@ export const pageQuery = graphql`
             location
             cover {
               childImageSharp {
-                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#64ffda" }) {
+                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#c9a227" }) {
                   ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
@@ -106,7 +101,7 @@ export const pageQuery = graphql`
             citations
             cover {
               childImageSharp {
-                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#64ffda" }) {
+                fluid(maxWidth: 700, quality: 90, traceSVG: { color: "#c9a227" }) {
                   ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }

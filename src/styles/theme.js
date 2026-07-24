@@ -1,6 +1,6 @@
 import { hex2rgba } from '@utils';
 
-const ACCENT = '#64ffda';
+const ACCENT = '#c9a227';
 const DARK_BG = '#020c1b';
 const BG = '#0a192f';
 
@@ -14,6 +14,7 @@ const theme = {
     lightSlate: '#a8b2d1',
     lightestSlate: '#ccd6f6',
     white: '#e6f1ff',
+    // key kept as "green" for edit-surface reasons even though ACCENT is now gold
     green: ACCENT,
     transGreen: hex2rgba(ACCENT, 0.07),
     shadowNavy: hex2rgba(DARK_BG, 0.7),
@@ -42,14 +43,14 @@ const theme = {
   easing: 'cubic-bezier(0.645, 0.045, 0.355, 1)',
   transition: 'all 0.20s cubic-bezier(0.5, 0.045, 0.355, 1)',
 
-  borderRadius: '3px',
+  borderRadius: '6px',
   navHeight: '100px',
   navScrollHeight: '70px',
   margin: '20px',
 
   tabHeight: 50,
   tabWidth: 120,
-  radius: 3,
+  radius: 6,
 
   hamburgerWidth: 30,
   hamBefore: `top 0.1s ease-in 0.25s, opacity 0.1s ease-in`,

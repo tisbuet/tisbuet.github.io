@@ -180,7 +180,7 @@ const GlobalStyle = createGlobalStyle`
         padding-left: 30px;
         margin-bottom: 10px;
         &:before {
-          content: '▹';
+          content: '•';
           position: absolute;
           left: 0;
           color: ${colors.green};
@@ -224,17 +224,21 @@ const GlobalStyle = createGlobalStyle`
 
   .overline {
     color: ${colors.green};
-    font-family: ${fonts.SFMono};
+    font-family: ${fonts.Calibre};
     font-size: ${fontSizes.md};
-    font-weight: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   .subtitle {
     color: ${colors.green};
     margin: 0 0 20px 0;
     font-size: ${fontSizes.md};
-    font-family: ${fonts.SFMono};
-    font-weight: normal;
+    font-family: ${fonts.Calibre};
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     line-height: 1.5;
     ${media.desktop`font-size: ${fontSizes.sm};`};
     ${media.tablet`font-size: ${fontSizes.smish};`};

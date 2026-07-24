@@ -5,7 +5,7 @@ import sr from '@utils/sr';
 import { srConfig, github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+const { colors, fonts } = theme;
 
 const StyledContainer = styled(Section)`
   position: relative;
@@ -34,18 +34,9 @@ const SkillsContainer = styled.ul`
 const Skill = styled.li`
   position: relative;
   margin-bottom: 10px;
-  padding-left: 20px;
   font-family: ${fonts.SFMono};
   font-size: 15px;
   color: ${colors.green};
-  &:before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: ${colors.green};
-    font-size: ${fontSizes.sm};
-    line-height: 12px;
-  }
 `;
 const StyledPic = styled.div`
   position: sticky;
