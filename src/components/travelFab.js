@@ -34,7 +34,7 @@ const StyledContainer = styled.div`
   right: 40px;
   z-index: 11;
   ${media.desktop`right: 25px;`};
-  ${media.tablet`top: auto; bottom: 20px; right: 20px;`};
+  ${media.tablet`top: 50%; right: 20px; transform: translateY(-50%);`};
 `;
 const StyledLabel = styled.span`
   position: absolute;
