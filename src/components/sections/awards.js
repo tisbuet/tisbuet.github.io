@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
@@ -207,18 +205,9 @@ const StyledProject = styled.div`
 const Awards = ({ data }) => {
   const awardsProjects = data.filter(({ node }) => node);
 
-  const revealTitle = useRef(null);
-  const revealProjects = useRef([]);
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach(ref => sr.reveal(ref, srConfig()));
-  }, []);
-
   return (
     <StyledContainer id="awards">
-      <Heading ref={revealTitle}>
-        International Competitions and Achievements
-      </Heading>
+      <Heading>International Competitions and Achievements</Heading>
 
       <div>
         {awardsProjects &&
@@ -227,7 +216,7 @@ const Awards = ({ data }) => {
             const { external, title, location, tech, github, cover } = frontmatter;
 
             return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+              <StyledProject key={i}>
                 <StyledContent>
                   <StyledProjectName>
                     {external ? (

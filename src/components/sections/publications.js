@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig, scholarUrl } from '@config';
+import { scholarUrl } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { hex2rgba } from '@utils';
@@ -241,16 +240,9 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
       return citationsB - citationsA;
     });
 
-  const revealTitle = useRef(null);
-  const revealProjects = useRef([]);
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach(ref => sr.reveal(ref, srConfig()));
-  }, []);
-
   return (
     <StyledContainer id="publications">
-      <Heading ref={revealTitle}>
+      <Heading>
         Publications & Patents [Patents: 1, Journal articles: 1, Conference articles: 6]
       </Heading>
       <StyledBody>
@@ -317,7 +309,7 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
             } = frontmatter;
 
             return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+              <StyledProject key={i}>
                 <StyledContent>
                   {pubType && (
                     <StyledPubTypeLabel>

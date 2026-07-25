@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
-import sr from '@utils/sr';
-import { srConfig, github } from '@config';
+import { github } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fonts } = theme;
@@ -108,11 +107,9 @@ const StyledAvatarLink = styled.a`
 const About = ({ data }) => {
   const { frontmatter, html } = data[0].node;
   const { title, skills, avatar } = frontmatter;
-  const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
-    <StyledContainer id="about" ref={revealContainer}>
+    <StyledContainer id="about">
       <Heading>{title}</Heading>
       <StyledFlexContainer>
         <StyledContent>

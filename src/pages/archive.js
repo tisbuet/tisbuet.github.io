@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import { Layout, Expandable } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
@@ -162,15 +160,6 @@ const ArchivePage = ({ location, data }) => {
       })
     : projects;
 
-  const revealTitle = useRef(null);
-  const revealTable = useRef(null);
-  const revealProjects = useRef([]);
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealTable.current, srConfig());
-    revealProjects.current.forEach(ref => sr.reveal(ref, srConfig()));
-  }, []);
-
   return (
     <Layout location={location}>
       <Helmet>
@@ -179,7 +168,7 @@ const ArchivePage = ({ location, data }) => {
       </Helmet>
 
       <StyledMainContainer>
-        <header ref={revealTitle}>
+        <header>
           <h1 className="big-title">Archive</h1>
           <p className="subtitle">A big list of things I’ve worked on</p>
           <StyledSearchInput
@@ -195,7 +184,7 @@ const ArchivePage = ({ location, data }) => {
           <StyledNoResults>No projects match your search.</StyledNoResults>
         )}
 
-        <StyledTableContainer ref={revealTable}>
+        <StyledTableContainer>
           <StyledTable>
             <thead>
               <tr>
@@ -214,7 +203,7 @@ const ArchivePage = ({ location, data }) => {
                   const panelId = `archive-details-${i}`;
                   return (
                     <React.Fragment key={i}>
-                      <tr ref={el => (revealProjects.current[i] = el)}>
+                      <tr>
                         <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
 
                         <td className="title">

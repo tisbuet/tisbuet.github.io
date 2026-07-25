@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Button } from '@styles';
@@ -156,15 +154,6 @@ const StyledNoResults = styled.p`
 const Projects = ({ data }) => {
   const [showMore, setShowMore] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const revealTitle = useRef(null);
-  const revealArchiveLink = useRef(null);
-  const revealProjects = useRef([]);
-
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealArchiveLink.current, srConfig());
-    revealProjects.current.forEach(ref => sr.reveal(ref, srConfig()));
-  }, []);
 
   const GRID_LIMIT = 9;
   const projects = data.filter(({ node }) => node);
@@ -184,7 +173,7 @@ const Projects = ({ data }) => {
 
   return (
     <StyledContainer id="projects">
-      <StyledTitle ref={revealTitle}>Other Noteworthy Projects</StyledTitle>
+      <StyledTitle>Other Noteworthy Projects</StyledTitle>
 
       <StyledSearchInput
         type="text"
@@ -206,7 +195,7 @@ const Projects = ({ data }) => {
               const { github, external, title, tech } = frontmatter;
               return (
                 <CSSTransition key={i} classNames="fadeup" timeout={300} exit={false}>
-                  <StyledProject key={i} ref={el => (revealProjects.current[i] = el)} tabIndex="0">
+                  <StyledProject key={i} tabIndex="0">
                     <StyledProjectInner>
                       <header>
                         <StyledProjectHeader>
@@ -253,7 +242,7 @@ const Projects = ({ data }) => {
             })}
         </TransitionGroup>
       </StyledGrid>
-      <StyledArchiveLink to="/archive" ref={revealArchiveLink}>
+      <StyledArchiveLink to="/archive">
         View Complete List of Projects
       </StyledArchiveLink>
     </StyledContainer>

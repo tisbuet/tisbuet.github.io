@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import sr from '@utils/sr';
-import { srConfig, email } from '@config';
+import { email } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
 const { colors, fontSizes, fonts } = theme;
@@ -43,11 +42,9 @@ const StyledEmailLink = styled.a`
 const Contact = ({ data }) => {
   const { frontmatter, html } = data[0].node;
   const { title, buttonText } = frontmatter;
-  const revealContainer = useRef(null);
-  useEffect(() => sr.reveal(revealContainer.current, srConfig()), []);
 
   return (
-    <StyledContainer id="contact" ref={revealContainer}>
+    <StyledContainer id="contact">
       <StyledHeading>What&apos;s Next?</StyledHeading>
 
       <StyledTitle>{title}</StyledTitle>

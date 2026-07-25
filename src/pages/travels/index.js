@@ -1,10 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
-import sr from '@utils/sr';
-import { srConfig } from '@config';
 import { Layout } from '@components';
 import TravelMap from '@components/travelMap';
 import { FormattedIcon } from '@components/icons';
@@ -296,13 +294,6 @@ const TravelsPage = ({ location, data }) => {
     }
   };
 
-  const revealTitle = useRef(null);
-  const revealCards = useRef([]);
-  useEffect(() => {
-    sr.reveal(revealTitle.current, srConfig());
-    revealCards.current.forEach(ref => sr.reveal(ref, srConfig()));
-  }, []);
-
   return (
     <Layout location={location}>
       <Helmet>
@@ -317,7 +308,7 @@ const TravelsPage = ({ location, data }) => {
       </Helmet>
 
       <StyledMainContainer>
-        <header ref={revealTitle}>
+        <header>
           <Heading>Travel Diaries</Heading>
           <p>
             A running map of the places beauty has pulled me toward &mdash; mountains, coastlines,
@@ -358,7 +349,6 @@ const TravelsPage = ({ location, data }) => {
                   $tilt={i % 2 === 0 ? -0.6 : 0.6}
                   ref={el => {
                     cardRefs.current[trip.slug] = el;
-                    revealCards.current[i] = el;
                   }}
                   className={activeSlug === trip.slug ? 'active' : ''}>
                   <StyledStamp aria-hidden="true">#{String(i + 1).padStart(2, '0')}</StyledStamp>
