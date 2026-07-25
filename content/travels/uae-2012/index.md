@@ -14,4 +14,4 @@ photos:
 tags: []
 ---
 
-_[Replace this paragraph with your own memory of this trip — first impressions, what you were doing there, anything that stuck.]_
+A much younger me, leaning back for a photo at the foot of the Burj Khalifa, its glass floors rising into a cloudy sky behind cranes still building nearby towers — my first trip abroad, and it showed.

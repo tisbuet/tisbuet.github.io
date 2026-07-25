@@ -320,9 +320,9 @@ const TravelsPage = ({ location, data }) => {
         <header ref={revealTitle}>
           <Heading>Travel Diaries</Heading>
           <p>
-            A running map of the trips that mattered &mdash; conferences, competitions, and
-            everywhere else curiosity has taken me. Hover or tap a pin to preview a trip, or
-            scroll through the journal below.
+            A running map of the places beauty has pulled me toward &mdash; mountains, coastlines,
+            and cities wandered slowly, with the odd conference or competition along for the
+            ride. Hover or tap a pin to preview a trip, or scroll through the journal below.
           </p>
         </header>
 

@@ -4,9 +4,9 @@ title: 'England'
 country: 'England'
 flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
 continent: 'Europe'
-city: 'London'
-lat: 51.5072
-lng: -0.1276
+city: 'Yorkshire'
+lat: 53.9591
+lng: -1.0815
 date: '2026-04-01'
 dateDisplay: 'April 2026'
 photos:
@@ -21,4 +21,4 @@ photos:
 tags: []
 ---
 
-_[Replace this paragraph with your own memory of England — where you went, who you saw, what stuck.]_
+A Yorkshire road trip that took in a park clock in Hull, a green lane through Langtoft, and Scarborough's beach below its old castle. In between: stone farmhouses, grazing cows, and a mossy railway bridge over a quiet country road — greener than any photo can show.
