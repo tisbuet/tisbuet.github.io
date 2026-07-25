@@ -5,9 +5,9 @@ github: ''
 external: ''
 tech:
   - LLM
-  - ASR
   - TTS
-  - redis
+  - xcodec2
+  - Llasa
 company: 'Hishab'
 showInProjects: true
 ---

@@ -142,10 +142,10 @@ const StyledCollage = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  justify-content: center;
   gap: 26px 0;
   margin: 34px 0 10px;
   padding-top: 4px;
-  ${media.phablet`justify-content: center;`};
 `;
 const StyledPolaroid = styled.div`
   position: relative;

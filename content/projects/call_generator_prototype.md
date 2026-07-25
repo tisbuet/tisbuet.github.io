@@ -6,9 +6,9 @@ external: ''
 tech:
   - Queue Management
   - Server Deployment
-  - FastAPI/Flask
+  - FastAPI
   - Docker
-  - AWS/GCP
+  - GCP
 company: 'Verbex.ai'
 showInProjects: true
 ---
