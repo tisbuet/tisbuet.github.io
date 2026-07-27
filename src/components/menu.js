@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { theme, mixins, media } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
-const StyledContainer = styled.div`
+const StyledClip = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -14,12 +14,24 @@ const StyledContainer = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 10;
-  outline: 0;
-  transition: ${theme.transition};
-  transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
-  visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
+  overflow: hidden;
+  /* establishes a containing block for the fixed child below, so its
+     off-screen translateX never leaks into the document's scroll width */
+  transform: translateZ(0);
   display: none;
   ${media.tablet`display: block;`};
+`;
+const StyledContainer = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  transition: ${theme.transition};
+  transform: translateX(${props => (props.menuOpen ? 0 : 100)}%);
+  visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
 `;
 const Sidebar = styled.aside`
   ${mixins.flexCenter};
@@ -78,24 +90,26 @@ const Menu = ({ menuOpen, toggleMenu }) => {
   };
 
   return (
-    <StyledContainer
-      menuOpen={menuOpen}
-      onClick={handleMenuClick}
-      aria-hidden={!menuOpen}
-      tabIndex={menuOpen ? 1 : -1}>
-      <Sidebar>
-        <NavLinks>
-          <NavList>
-            {navLinks &&
-              navLinks.map(({ url, name }, i) => (
-                <NavListItem key={i}>
-                  <NavLink to={url}>{name}</NavLink>
-                </NavListItem>
-              ))}
-          </NavList>
-        </NavLinks>
-      </Sidebar>
-    </StyledContainer>
+    <StyledClip>
+      <StyledContainer
+        menuOpen={menuOpen}
+        onClick={handleMenuClick}
+        aria-hidden={!menuOpen}
+        tabIndex={menuOpen ? 1 : -1}>
+        <Sidebar>
+          <NavLinks>
+            <NavList>
+              {navLinks &&
+                navLinks.map(({ url, name }, i) => (
+                  <NavListItem key={i}>
+                    <NavLink to={url}>{name}</NavLink>
+                  </NavListItem>
+                ))}
+            </NavList>
+          </NavLinks>
+        </Sidebar>
+      </StyledContainer>
+    </StyledClip>
   );
 };
 
