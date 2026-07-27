@@ -19,5 +19,3 @@ tags:
   - road trip
   - mountains
 ---
-
-Pangong Tso's blue changed with every step along its shore, with bare mountains on one side and snow-capped ones on the other. Climbing a rocky ridge marked with stone piles earned a view worth the thin air. The road itself was part of the fun — a stop for juice under some pine trees before the next mountain pass.

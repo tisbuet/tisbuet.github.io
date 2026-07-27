@@ -20,5 +20,3 @@ photos:
   - 'England-6.jpg'
 tags: []
 ---
-
-A Yorkshire road trip that took in a park clock in Hull, a green lane through Langtoft, and Scarborough's beach below its old castle. In between: stone farmhouses, grazing cows, and a mossy railway bridge over a quiet country road — greener than any photo can show.

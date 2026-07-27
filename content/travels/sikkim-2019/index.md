@@ -18,5 +18,3 @@ tags:
   - Lachung
   - Zero point
 ---
-
-A rushing river gorge and a swaying footbridge near Gangtok, friends bundled up in warm jackets somewhere higher and colder, and — for a change of pace — a raft full of yellow helmets bouncing through the Teesta's rapids.

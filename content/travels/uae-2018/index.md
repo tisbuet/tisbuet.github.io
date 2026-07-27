@@ -20,5 +20,3 @@ photos:
   - 'dubai-2018-8.jpg'
 tags: []
 ---
-
-A family trip this time — a selfie with Mom, a camel resting on the beach, and the Burj Al Arab glowing through the haze. Between the calm moments: Global Village lit up at dusk, sunflower fields at Miracle Garden, a photo next to a yellow Corvette I definitely didn't own, Dubai Mall's Fashion Avenue glowing gold at night, and Wafi's pyramid and sphinx lit up purple and green.

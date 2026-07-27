@@ -24,5 +24,3 @@ tags:
   - Dharmashala
   - Larke Pass
 ---
-
-It started in Pokhara with a silly selfie next to a sombrero-wearing monkey statue outside a restaurant. Then came weeks on the trail around the eighth-highest mountain on Earth: forests turning into passes strung with prayer flags, small villages tucked under steep snow peaks, goats walking past solar-lit lodges, and a group of friends getting more sunburned each day. It all led to Larke Pass, 5,106m up, flags flapping in the wind.
