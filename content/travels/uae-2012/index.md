@@ -1,6 +1,6 @@
 ---
 slug: 'uae-2012'
-title: 'Dubai'
+title: 'Dubai 2012'
 country: 'United Arab Emirates'
 countryCode: 'AE'
 continent: 'Asia'

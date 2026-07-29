@@ -1,6 +1,6 @@
 ---
 slug: 'uae-2018'
-title: 'Dubai Again'
+title: 'Dubai 2018'
 country: 'United Arab Emirates'
 countryCode: 'AE'
 continent: 'Asia'

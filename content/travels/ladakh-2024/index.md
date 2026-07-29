@@ -11,11 +11,15 @@ date: '2024-06-01'
 dateDisplay: 'June 2024'
 photos:
   - 'ladakh-1.jpg'
-  - 'ladakh-2.jpg'
   - 'ladakh-4.jpg'
   - 'ladakh-3.jpg'
+  - 'Ladakh-6.jpg'
+  - 'Ladakh-7.jpg'
+  - 'Ladakh-8.jpg'
+  - 'Ladakh-2.jpg'
   - 'ladakh-5.jpg'
 tags:
   - road trip
-  - mountains
+  - Pangong Lake
+  - Khardungla
 ---
