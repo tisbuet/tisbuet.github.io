@@ -18,6 +18,9 @@ const StyledClip = styled.div`
   /* establishes a containing block for the fixed child below, so its
      off-screen translateX never leaks into the document's scroll width */
   transform: translateZ(0);
+  /* this wrapper spans the full viewport even when the menu is closed;
+     without this it silently blocks taps on whatever's underneath it */
+  pointer-events: none;
   display: none;
   ${media.tablet`display: block;`};
 `;
@@ -29,6 +32,7 @@ const StyledContainer = styled.div`
   width: 100%;
   height: 100%;
   outline: 0;
+  pointer-events: auto;
   transition: ${theme.transition};
   transform: translateX(${props => (props.menuOpen ? 0 : 100)}%);
   visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
