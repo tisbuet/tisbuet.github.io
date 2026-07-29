@@ -15,8 +15,6 @@ const IndexPage = ({ location, data }) => (
         data={data.publications.edges}
         patents={data.patents.edges}
         citations={data.scholarProfile.edges[0]?.node.citations}
-        hIndex={data.scholarProfile.edges[0]?.node.hIndex}
-        i10Index={data.scholarProfile.edges[0]?.node.i10Index}
       />
       <Projects data={data.projects.edges} />
       <Contact data={data.contact.edges} />
@@ -132,8 +130,6 @@ export const pageQuery = graphql`
       edges {
         node {
           citations
-          hIndex
-          i10Index
         }
       }
     }

@@ -208,7 +208,7 @@ const StyledProject = styled.div`
   
 `;
 
-const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
+const Publications = ({ data, patents, citations }) => {
   const publicationsProjects = data.filter(({ node }) => node).sort((a, b) => {
     const citationsA = a.node.frontmatter.citations ?? -1;
     const citationsB = b.node.frontmatter.citations ?? -1;
@@ -248,19 +248,7 @@ const Publications = ({ data, patents, citations, hIndex, i10Index }) => {
       <StyledBody>
       {citations != null && (
         <StyledTotalCitations>
-          Total Citations: <span>{citations}</span>
-          {hIndex != null && (
-            <>
-              {' '}
-              &middot; h-index: <span>{hIndex}</span>
-            </>
-          )}
-          {i10Index != null && (
-            <>
-              {' '}
-              &middot; i10-index: <span>{i10Index}</span>
-            </>
-          )}{' '}
+          Total Citations: <span>{citations}</span>{' '}
           (<a href={scholarUrl} target="_blank" rel="nofollow noopener noreferrer">
             Google Scholar profile
           </a>)
@@ -403,8 +391,6 @@ Publications.propTypes = {
   data: PropTypes.array.isRequired,
   patents: PropTypes.array,
   citations: PropTypes.number,
-  hIndex: PropTypes.number,
-  i10Index: PropTypes.number,
 };
 
 export default Publications;
