@@ -1,7 +1,7 @@
 module.exports = {
   siteTitle: 'Md. Tariqul Islam | Senior NLP Engineer',
   siteDescription:
-    'Md. Tariqul Islam is a full-time Senior NLP Engineer at Verbex Ltd. who earned his bachelor\'s degree from Bangladesh University of Engineering and Technology. He is now a part-time Master\'s student at the same university doing research on speech processing. He has a wonderful academic career, having published 5 research papers so far in a short period of time, including a journal paper which was published by EURASIP. He competed in several national and international contests and was recognized for his efforts. After visiting ICIP 2019, Taiwan, as a finalist in the international competition VIP CUP 2019, the desire to build a career in research in the field of Signal processing and Machine Learning has increased.',
+    'Md. Tariqul Islam is a Senior NLP Engineer at Verbex.ai and a BUET graduate with over five years of experience building Large Language Models, Speech AI and Text-to-Speech systems. His research across NLP, computer vision and signal processing has produced one patent and seven publications, and he has recently been recommended for the BCS Customs and Excise Cadre as an Assistant Commissioner.',
   siteKeywords:
     'Md. Tariqul Islam, Tariqul, Islam, tisbuet, Verbex, Senior NLP Engineer, Researcher',
   siteUrl: 'https://tisbuet.github.io/',
@@ -9,7 +9,7 @@ module.exports = {
   googleAnalyticsID: 'UA-45666519-2',
   googleVerification: 'DCl7VAf9tcz6eD9gb67NfkNnJ1PKRNcg8qQiwpbx9Lk',
   email: 'tisbuet@gmail.com',
-  github: 'https://github.com/shuvohishab',
+  github: 'https://github.com/tisbuet',
   scholarUrl: 'https://scholar.google.co.uk/citations?hl=en&user=iRSDOrUAAAAJ',
   socialMedia: [
     {
@@ -22,7 +22,7 @@ module.exports = {
     },
     {
       name: 'GitHub',
-      url: 'https://github.com/shuvohishab',
+      url: 'https://github.com/tisbuet',
     },
   ],
 
