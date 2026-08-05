@@ -73,7 +73,7 @@ const TagTemplate = ({ pageContext, data, location }) => {
             // and anything with a real site path.
             const internalPath = slug && slug.startsWith('/') ? slug : null;
             const travelAnchor =
-              !external && slug && !internalPath ? `/travels#travel-${slug}` : null;
+              !external && slug && !internalPath ? `/travel-diaries#travel-${slug}` : null;
             return (
               <li key={slug || external || title}>
                 <h2>

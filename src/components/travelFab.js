@@ -105,7 +105,7 @@ const TravelFab = ({ isHome, location }) => {
     return () => clearTimeout(timeout);
   }, []);
 
-  if (location && location.pathname.startsWith('/travels')) {
+  if (location && location.pathname.startsWith('/travel-diaries')) {
     return null;
   }
 
@@ -114,7 +114,7 @@ const TravelFab = ({ isHome, location }) => {
       <TransitionGroup component={null}>
         {isMounted && (
           <CSSTransition classNames={isHome ? 'fade' : ''} timeout={isHome ? loaderDelay : 0}>
-            <StyledFab to="/travels/" aria-label="Travel Diaries">
+            <StyledFab to="/travel-diaries/" aria-label="Travel Diaries">
               <IconPlane />
               <StyledLabel aria-hidden="true">Travel Diaries</StyledLabel>
             </StyledFab>

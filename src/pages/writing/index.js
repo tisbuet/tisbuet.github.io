@@ -79,18 +79,14 @@ const WritingPage = ({ location, data }) => {
             modest hardware, and the computer-vision projects that started it — published on Medium.
           </Lede>
 
-          <StatRow>
-            <div>
-              <dt>Articles</dt>
-              <dd>{articles.length}</dd>
-            </div>
-            {publishers.size > 0 && (
+          {publishers.size > 0 && (
+            <StatRow>
               <div>
                 <dt>Published on</dt>
                 <dd>{[...publishers].join(', ')}</dd>
               </div>
-            )}
-          </StatRow>
+            </StatRow>
+          )}
         </PageHead>
 
         {articles.length === 0 ? (

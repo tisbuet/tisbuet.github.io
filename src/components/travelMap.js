@@ -212,8 +212,7 @@ const TravelMap = ({ trips, activeSlug, onSelectTrip }) => {
 
   const stats = useMemo(() => {
     const countries = new Set(trips.map(trip => trip.country));
-    const continents = new Set(trips.map(trip => trip.continent).filter(Boolean));
-    return { trips: trips.length, countries: countries.size, continents: continents.size };
+    return { countries: countries.size };
   }, [trips]);
 
   const orderedTrips = useMemo(() => {
@@ -230,9 +229,7 @@ const TravelMap = ({ trips, activeSlug, onSelectTrip }) => {
   return (
     <div>
       <StyledStats>
-        <span>{stats.trips}</span> {stats.trips === 1 ? 'trip' : 'trips'} &middot;{' '}
-        <span>{stats.countries}</span> {stats.countries === 1 ? 'country' : 'countries'} &middot;{' '}
-        <span>{stats.continents}</span> {stats.continents === 1 ? 'continent' : 'continents'}
+        <span>{stats.countries}</span> {stats.countries === 1 ? 'country' : 'countries'}
       </StyledStats>
       <StyledMapWrapper>
         <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} width="100%" height="auto">

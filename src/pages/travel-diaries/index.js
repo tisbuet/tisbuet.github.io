@@ -297,7 +297,7 @@ const TravelsPage = ({ location, data }) => {
     <Layout location={location}>
       <Helmet>
         <title>Travel Diaries | Md. Tariqul Islam</title>
-        <link rel="canonical" href="https://tisbuet.github.io/travels" />
+        <link rel="canonical" href="https://tisbuet.github.io/travel-diaries" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
