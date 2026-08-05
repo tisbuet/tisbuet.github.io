@@ -8,7 +8,7 @@ city: 'Samagaon'
 lat: 28.5975
 lng: 84.6383
 date: '2026-03-01'
-dateDisplay: 'March 2026'
+dateDisplay: 'March-April 2026'
 photos:
   - 'manaslu-6.jpg'
   - 'manaslu-4.jpg'

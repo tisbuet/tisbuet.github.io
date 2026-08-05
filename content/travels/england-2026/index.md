@@ -8,7 +8,7 @@ city: 'Yorkshire'
 lat: 53.9591
 lng: -1.0815
 date: '2026-04-01'
-dateDisplay: 'April 2026'
+dateDisplay: 'April-June 2026'
 photos:
   - 'England-1.jpg'
   - 'England-2.jpg'
