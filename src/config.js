@@ -51,7 +51,7 @@ module.exports = {
     },
     {
       name: 'Writing',
-      url: '/pensieve',
+      url: '/writing',
     },
     {
       name: 'Contact',

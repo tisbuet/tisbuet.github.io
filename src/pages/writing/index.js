@@ -67,7 +67,7 @@ const WritingPage = ({ location, data }) => {
     <Layout location={location}>
       <Helmet>
         <title>Writing | Md. Tariqul Islam</title>
-        <link rel="canonical" href="https://tisbuet.github.io/pensieve" />
+        <link rel="canonical" href="https://tisbuet.github.io/writing" />
       </Helmet>
 
       <Page>
@@ -119,7 +119,7 @@ const WritingPage = ({ location, data }) => {
                       <StyledTags>
                         {tags.map(tag => (
                           <li key={tag}>
-                            <Link to={`/pensieve/tags/${kebabCase(tag)}/`}>#{tag}</Link>
+                            <Link to={`/writing/tags/${kebabCase(tag)}/`}>#{tag}</Link>
                           </li>
                         ))}
                       </StyledTags>
