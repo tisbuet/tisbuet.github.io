@@ -4,7 +4,7 @@ import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
 import { Layout } from '@components';
 import styled from 'styled-components';
-import { theme, mixins, Main } from '@styles';
+import { theme, mixins, Main, tokens } from '@styles';
 const { colors, fontSizes } = theme;
 
 const StyledTagsContainer = styled(Main)`
@@ -31,11 +31,11 @@ const StyledTagsContainer = styled(Main)`
         font-size: inherit;
         margin: 0;
         a {
-          color: ${colors.lightSlate};
+          color: ${tokens.inkSoft};
         }
       }
       .subtitle {
-        color: ${colors.slate};
+        color: ${tokens.muted};
         font-size: ${fontSizes.sm};
 
         .tag {
@@ -67,11 +67,23 @@ const TagTemplate = ({ pageContext, data, location }) => {
 
         <ul className="fancy-list">
           {edges.map(({ node }) => {
-            const { title, slug, date, tags } = node.frontmatter;
+            const { title, slug, date, tags, external } = node.frontmatter;
+            // Tagged entries come from three places now: external writing (no
+            // slug), travel entries (a bare slug that anchors into /travels),
+            // and anything with a real site path.
+            const internalPath = slug && slug.startsWith('/') ? slug : null;
+            const travelAnchor =
+              !external && slug && !internalPath ? `/travels#travel-${slug}` : null;
             return (
-              <li key={slug}>
+              <li key={slug || external || title}>
                 <h2>
-                  <Link to={slug}>{title}</Link>
+                  {external ? (
+                    <a href={external} target="_blank" rel="nofollow noopener noreferrer">
+                      {title}
+                    </a>
+                  ) : (
+                    <Link to={internalPath || travelAnchor || '/'}>{title}</Link>
+                  )}
                 </h2>
                 <p className="subtitle">
                   <time>
@@ -138,6 +150,7 @@ export const pageQuery = graphql`
             date
             slug
             tags
+            external
           }
         }
       }

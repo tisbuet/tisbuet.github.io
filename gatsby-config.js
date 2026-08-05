@@ -20,8 +20,8 @@ module.exports = {
         name: 'Md. Tariqul Islam',
         short_name: 'tisbuet',
         start_url: '/',
-        background_color: '#020c1b', // must match theme.js colors.darkNavy
-        theme_color: '#0a192f', // must match theme.js colors.navy
+        background_color: '#14120f', // must match editorial.js palettes.dark.paper
+        theme_color: '#14120f', // must match editorial.js palettes.dark.paper
         display: 'minimal-ui',
         icon: 'src/images/logo.png',
       },
@@ -36,8 +36,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/posts`,
-        name: `posts`,
+        path: `${__dirname}/content/writing`,
+        name: `writing`,
       },
     },
     {

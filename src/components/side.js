@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
-import { theme, media } from '@styles';
+import { theme, media, tokens } from '@styles';
 const { colors, loaderDelay } = theme;
 
 const StyledContainer = styled.div`
@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
   left: ${props => (props.orientation === 'left' ? '40px' : 'auto')};
   right: ${props => (props.orientation === 'left' ? 'auto' : '40px')};
   z-index: 10;
-  color: ${colors.green};
+  color: ${tokens.muted};
   ${media.desktop`right: 25px;`};
   ${media.tablet`display: none;`};
 `;

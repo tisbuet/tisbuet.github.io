@@ -3,210 +3,167 @@ import { graphql, Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import kebabCase from 'lodash/kebabCase';
 import PropTypes from 'prop-types';
-import { Layout } from '@components';
-import { IconZap } from '@components/icons';
+import { Layout, PageNav } from '@components';
 import styled from 'styled-components';
-import { theme, mixins, media, Main } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { theme, editorial } from '@styles';
+const { fontSizes, fonts } = theme;
+const {
+  tokens: t,
+  Page,
+  PageHead,
+  Eyebrow,
+  DisplayTitle,
+  Lede,
+  StatRow,
+  ItemList,
+  Item,
+  ItemIndex,
+  ItemBody,
+  MetaLabel,
+  ItemTitle,
+  VerbLink,
+  Empty,
+} = editorial;
 
-const StyledMainContainer = styled(Main)`
-  & > header {
-    text-align: center;
-    margin-bottom: 100px;
+/*
+ * Writing lives on Medium rather than on this site, so every entry here links
+ * out. content/writing/*.md holds the metadata only — there is no body to
+ * render, which is why this page has no post template behind it.
+ */
 
-    a {
-      &:hover,
-      &:focus {
-        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>⚡</text></svg>")
-            20 0,
-          auto;
-      }
-    }
-  }
-
-  footer {
-    ${mixins.flexBetween};
-    margin-top: 20px;
-    width: 100%;
-  }
-`;
-const StyledGrid = styled.div`
-  margin-top: 50px;
-
-  .posts {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 15px;
-    position: relative;
-    ${media.desktop`grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));`};
-  }
-`;
-const StyledPostInner = styled.div`
-  ${mixins.boxShadow};
-  ${mixins.flexBetween};
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  padding: 2rem 1.75rem;
-  height: 100%;
-  border-radius: ${theme.borderRadius};
-  transition: ${theme.transition};
-  background-color: ${colors.lightNavy};
-  header,
-  a {
-    width: 100%;
-  }
-`;
-const StyledPost = styled.div`
-  transition: ${theme.transition};
-  cursor: default;
-  &:hover,
-  &:focus {
-    outline: 0;
-    ${StyledPostInner} {
-      transform: translateY(-5px);
-    }
-  }
-`;
-const StyledPostHeader = styled.div`
-  ${mixins.flexBetween};
-  margin-bottom: 30px;
-`;
-const StyledFolder = styled.div`
-  color: ${colors.green};
-  svg {
-    width: 40px;
-    height: 40px;
-  }
-`;
-const StyledPostName = styled.h5`
-  margin: 0 0 10px;
-  font-size: ${fontSizes.xxl};
-  color: ${colors.lightestSlate};
-`;
-const StyledPostDescription = styled.div`
-  font-size: 17px;
-  color: ${colors.lightSlate};
-`;
-const StyledDate = styled.span`
-  text-transform: uppercase;
-  font-family: ${fonts.SFMono};
-  font-size: ${fontSizes.xs};
-  color: ${colors.lightSlate};
+const StyledSummary = styled.p`
+  margin: 12px 0 0;
+  max-width: 62ch;
+  font-size: ${fontSizes.md};
+  line-height: 1.55;
+  color: ${t.inkSoft};
 `;
 const StyledTags = styled.ul`
   display: flex;
-  align-items: flex-end;
   flex-wrap: wrap;
+  gap: 14px;
+  margin: 18px 0 0;
   padding: 0;
-  margin: 0;
   list-style: none;
 
   li {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.xs};
-    color: ${colors.green};
-    line-height: 1.75;
-    margin-right: 15px;
-    &:last-of-type {
-      margin-right: 0;
-    }
-    a {
-      ${mixins.inlineLink};
+    letter-spacing: 0.04em;
+    color: ${t.muted};
+
+    a:hover,
+    a:focus {
+      color: ${t.accentDeep};
     }
   }
 `;
 
-const PensievePage = ({ location, data }) => {
-  const posts = data.allMarkdownRemark.edges;
+const WritingPage = ({ location, data }) => {
+  const articles = data.writing.edges.map(({ node }) => node.frontmatter);
+  const publishers = new Set(articles.map(a => a.publisher).filter(Boolean));
 
   return (
     <Layout location={location}>
       <Helmet>
-        <title>Pensieve | Md. Tariqul Islam</title>
+        <title>Writing | Md. Tariqul Islam</title>
         <link rel="canonical" href="https://tisbuet.github.io/pensieve" />
       </Helmet>
 
-      <StyledMainContainer>
-        <header>
-          <h1 className="big-title">Pensieve</h1>
-          <p className="subtitle">
-            <a
-              href="https://www.wizardingworld.com/writing-by-jk-rowling/pensieve"
-              target="_blank"
-              rel="noopener noreferrer">
-              a collection of memories
-            </a>
-          </p>
-        </header>
+      <Page>
+        <PageHead>
+          <Eyebrow>Writing</Eyebrow>
+          <DisplayTitle>Notes on models and the making of them</DisplayTitle>
+          <Lede>
+            Practical write-ups on retrieval-augmented generation, fine-tuning open-source models on
+            modest hardware, and the computer-vision projects that started it — published on Medium.
+          </Lede>
 
-        <StyledGrid>
-          <div className="posts">
-            {posts.length > 0 &&
-              posts.map(({ node }, i) => {
-                const { frontmatter } = node;
-                const { title, description, slug, date, tags } = frontmatter;
-                const d = new Date(date);
+          <StatRow>
+            <div>
+              <dt>Articles</dt>
+              <dd>{articles.length}</dd>
+            </div>
+            {publishers.size > 0 && (
+              <div>
+                <dt>Published on</dt>
+                <dd>{[...publishers].join(', ')}</dd>
+              </div>
+            )}
+          </StatRow>
+        </PageHead>
 
-                return (
-                  <StyledPost key={i} tabIndex="0">
-                    <StyledPostInner>
-                      <header>
-                        <Link to={slug}>
-                          <StyledPostHeader>
-                            <StyledFolder>
-                              <IconZap />
-                            </StyledFolder>
-                          </StyledPostHeader>
-                          <StyledPostName>{title}</StyledPostName>
-                          <StyledPostDescription>{description}</StyledPostDescription>
-                        </Link>
-                      </header>
-                      <footer>
-                        <StyledDate>{`${d.toLocaleDateString()}`}</StyledDate>
-                        <StyledTags>
-                          {tags.map((tag, i) => (
-                            <li key={i}>
-                              <Link to={`/pensieve/tags/${kebabCase(tag)}/`}>#{tag}</Link>
-                            </li>
-                          ))}
-                        </StyledTags>
-                      </footer>
-                    </StyledPostInner>
-                  </StyledPost>
-                );
-              })}
-          </div>
-        </StyledGrid>
-      </StyledMainContainer>
+        {articles.length === 0 ? (
+          <Empty>Nothing published yet.</Empty>
+        ) : (
+          <ItemList style={{ marginTop: 20 }}>
+            {articles.map((article, i) => {
+              const { title, external, publisher, readingTime, description, tags, date } = article;
+              const year = date ? new Date(date).getFullYear() : null;
+
+              return (
+                <Item key={title} $columns="64px 1fr">
+                  <ItemIndex>{String(i + 1).padStart(2, '0')}</ItemIndex>
+
+                  <ItemBody>
+                    <MetaLabel>
+                      {[publisher, year, readingTime].filter(Boolean).join(' · ')}
+                    </MetaLabel>
+                    <ItemTitle>
+                      <a href={external} target="_blank" rel="nofollow noopener noreferrer">
+                        {title}
+                      </a>
+                    </ItemTitle>
+                    {description && <StyledSummary>{description}</StyledSummary>}
+                    {tags && (
+                      <StyledTags>
+                        {tags.map(tag => (
+                          <li key={tag}>
+                            <Link to={`/pensieve/tags/${kebabCase(tag)}/`}>#{tag}</Link>
+                          </li>
+                        ))}
+                      </StyledTags>
+                    )}
+                    <VerbLink href={external} target="_blank" rel="nofollow noopener noreferrer">
+                      READ <span>&rarr;</span>
+                    </VerbLink>
+                  </ItemBody>
+                </Item>
+              );
+            })}
+          </ItemList>
+        )}
+
+        <PageNav pathname={location.pathname} />
+      </Page>
     </Layout>
   );
 };
 
-PensievePage.propTypes = {
+WritingPage.propTypes = {
   location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };
 
-export default PensievePage;
+export default WritingPage;
 
 export const pageQuery = graphql`
   {
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/posts/" }, frontmatter: { draft: { ne: true } } }
+    writing: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/writing/" } }
       sort: { frontmatter: { date: DESC } }
     ) {
       edges {
         node {
           frontmatter {
             title
-            description
-            slug
             date
+            external
+            publisher
+            readingTime
+            description
             tags
-            draft
           }
-          html
         }
       }
     }

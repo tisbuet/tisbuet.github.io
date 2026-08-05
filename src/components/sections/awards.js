@@ -232,7 +232,7 @@ const Awards = ({ data }) => {
                     )}
                   </StyledProjectName>
                   <p>
-                     <i>{location}</i>
+                    <i>{location}</i>
                   </p>
                   <StyledDescription dangerouslySetInnerHTML={{ __html: html }} />
                   {tech && (

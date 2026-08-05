@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from './theme';
+import { tokens } from './editorial';
 import media from './media';
 const { colors, fontSizes } = theme;
 
@@ -18,7 +19,7 @@ const Heading = styled.h3`
     display: block;
     height: 1px;
     width: 300px;
-    background-color: ${colors.lightestNavy};
+    background-color: ${tokens.rule};
     position: relative;
     top: -5px;
     margin-left: 20px;

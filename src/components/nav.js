@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { throttle } from '@utils';
 import { navLinks, navHeight } from '@config';
-import { Menu } from '@components';
+import { Menu, ThemeToggle } from '@components';
 import { IconLogo } from '@components/icons';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
+import { theme, mixins, media, tokens } from '@styles';
 const { colors, fontSizes, fonts, loaderDelay } = theme;
 
 const StyledContainer = styled.header`
@@ -16,7 +16,9 @@ const StyledContainer = styled.header`
   position: fixed;
   top: 0;
   padding: 0px 50px;
-  background-color: ${colors.navy};
+  background-color: ${tokens.paper};
+  border-bottom: 1px solid
+    ${props => (props.scrollDirection === 'none' ? 'transparent' : tokens.rule)};
   transition: ${theme.transition};
   z-index: 11;
   filter: none !important;
@@ -25,7 +27,7 @@ const StyledContainer = styled.header`
   width: 100%;
   height: ${props => (props.scrollDirection === 'none' ? theme.navHeight : theme.navScrollHeight)};
   box-shadow: ${props =>
-    props.scrollDirection === 'up' ? `0 10px 30px -10px ${colors.shadowNavy}` : 'none'};
+    props.scrollDirection === 'up' ? `0 10px 30px -18px rgba(var(--shadow-rgb), 0.28)` : 'none'};
   transform: translateY(
     ${props => (props.scrollDirection === 'down' ? `-${theme.navScrollHeight}` : '0px')}
   );
@@ -36,7 +38,7 @@ const StyledNav = styled.nav`
   ${mixins.flexBetween};
   position: relative;
   width: 100%;
-  color: ${colors.lightestSlate};
+  color: ${tokens.ink};
   font-family: ${fonts.Calibre};
   z-index: 12;
 `;
@@ -44,7 +46,7 @@ const StyledLogo = styled.div`
   ${mixins.flexCenter};
   a {
     display: block;
-    color: ${colors.green};
+    color: ${tokens.accentDeep};
     width: 42px;
     height: 42px;
     &:hover,
@@ -83,7 +85,7 @@ const StyledHamburgerBox = styled.div`
   height: 24px;
 `;
 const StyledHamburgerInner = styled.div`
-  background-color: ${colors.green};
+  background-color: ${tokens.ink};
   position: absolute;
   width: ${theme.hamburgerWidth}px;
   height: 2px;
@@ -102,7 +104,7 @@ const StyledHamburgerInner = styled.div`
   &:after {
     content: '';
     display: block;
-    background-color: ${colors.green};
+    background-color: ${tokens.ink};
     position: absolute;
     left: auto;
     right: 0;
@@ -138,17 +140,52 @@ const StyledList = styled.ol`
   list-style: none;
 `;
 const StyledListItem = styled.li`
-  margin: 0 10px;
+  margin: 0 4px;
   position: relative;
-  font-size: ${fontSizes.smil};
+  font-family: ${fonts.SFMono};
+  font-size: ${fontSizes.smi};
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 `;
 const StyledListLink = styled(Link)`
-  padding: 12px 10px;
+  padding: 12px 12px;
+  color: ${tokens.muted};
+  &:hover,
+  &:focus {
+    color: ${tokens.ink};
+  }
+  /* current route reads as ink with a gold rule beneath it */
+  &.nav-active {
+    color: ${tokens.ink};
+    &:after {
+      content: '';
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 6px;
+      height: 1px;
+      background-color: ${tokens.accent};
+    }
+  }
 `;
 const StyledResumeButton = styled.a`
-  ${mixins.smallButton};
-  margin-left: 10px;
-  font-size: ${fontSizes.md};
+  margin-left: 14px;
+  padding: 11px 20px;
+  border: 1px solid ${tokens.ink};
+  border-radius: 2px;
+  font-family: ${fonts.SFMono};
+  font-size: ${fontSizes.smi};
+  letter-spacing: 0.1em;
+  color: ${tokens.ink};
+  transition: ${theme.transition};
+  &:hover,
+  &:focus {
+    background-color: ${tokens.ink};
+    color: ${tokens.paper};
+  }
+  &:after {
+    display: none !important;
+  }
 `;
 
 const DELTA = 5;
@@ -276,7 +313,9 @@ class Nav extends Component {
                   navLinks.map(({ url, name }, i) => (
                     <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
                       <StyledListItem key={i}>
-                        <StyledListLink to={url}>{name}</StyledListLink>
+                        <StyledListLink to={url} activeClassName="nav-active">
+                          {name}
+                        </StyledListLink>
                       </StyledListItem>
                     </CSSTransition>
                   ))}
@@ -286,13 +325,14 @@ class Nav extends Component {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeDownClass} timeout={timeout}>
-                  <div>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
                     <StyledResumeButton
                       href="https://drive.google.com/file/d/1IcI0-_RC7c0HcXDXbcomttuWmSb2Mfjb/view?usp=sharing"
                       target="_blank"
                       rel="nofollow noopener noreferrer">
                       CV
                     </StyledResumeButton>
+                    <ThemeToggle />
                   </div>
                 </CSSTransition>
               )}

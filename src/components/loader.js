@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import anime from 'animejs';
 import { IconLoader } from '@components/icons';
 import styled from 'styled-components';
-import { theme, mixins } from '@styles';
+import { theme, mixins, tokens } from '@styles';
 const { colors } = theme;
 
 const StyledContainer = styled.div`
   ${mixins.flexCenter};
-  background-color: ${colors.darkNavy};
+  background-color: ${tokens.paper};
   position: fixed;
   width: 100%;
   height: 100%;

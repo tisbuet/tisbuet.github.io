@@ -1,5 +1,7 @@
 export { default as theme } from './theme';
 export { default as GlobalStyle } from './GlobalStyle';
+export { tokens, palettes, ACCENT_LITERAL, ThemeVars } from './editorial';
+export * as editorial from './editorial';
 export { default as mixins } from './mixins';
 export { default as media } from './media';
 export { default as Header } from './Header';

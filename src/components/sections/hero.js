@@ -40,7 +40,7 @@ const StyledTitle = styled.h2`
 `;
 const StyledSubtitle = styled.h3`
   font-size: 35px;
-  line-height: 1.0;
+  line-height: 1;
   color: ${colors.slate};
   ${media.desktop`font-size: 35px;`};
   ${media.tablet`font-size: 35px;`};
@@ -73,9 +73,7 @@ const Hero = ({ data }) => {
   const one = () => <StyledOverline>{frontmatter.title}</StyledOverline>;
   const two = () => <StyledTitle>{frontmatter.name}.</StyledTitle>;
   const three = () => <StyledSubtitle>{frontmatter.subtitle}</StyledSubtitle>;
-  const four = () => (
-    <StyledDescription dangerouslySetInnerHTML={{ __html: html }} />
-  );
+  const four = () => <StyledDescription dangerouslySetInnerHTML={{ __html: html }} />;
   const five = () => (
     <div>
       <StyledEmailLink href={`mailto:${email}`}>Contact Me</StyledEmailLink>

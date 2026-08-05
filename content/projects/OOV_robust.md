@@ -7,7 +7,7 @@ tech:
   - Audio Processing
   - OOV words
   - ASR
-company: 'Hishab Ltd.'
+company: 'Verbex.ai'
 showInProjects: true
 ---
 

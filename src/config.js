@@ -26,30 +26,36 @@ module.exports = {
     },
   ],
 
+  // Real routes rather than in-page anchors: one page per audience, the way a
+  // public-facing site is read. Travels stays on the floating button.
   navLinks: [
     {
       name: 'About',
-      url: '/#about',
+      url: '/about',
     },
     {
-      name: 'Experience',
-      url: '/#jobs',
+      name: 'Work Experience',
+      url: '/experience',
     },
     {
-      name: 'Awards',
-      url: '/#awards',
-    },
-    {
-      name: 'Publications',
-      url: '/#publications',
+      name: 'Research',
+      url: '/research',
     },
     {
       name: 'Projects',
-      url: '/#projects',
+      url: '/projects',
+    },
+    {
+      name: 'Recognition',
+      url: '/recognition',
+    },
+    {
+      name: 'Writing',
+      url: '/pensieve',
     },
     {
       name: 'Contact',
-      url: '/#contact',
+      url: '/contact',
     },
   ],
 

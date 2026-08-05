@@ -8,7 +8,7 @@ import TravelMap from '@components/travelMap';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
 import { hex2rgba } from '@utils';
-import { theme, mixins, media, Main, Heading } from '@styles';
+import { theme, mixins, media, Main, Heading, tokens, ACCENT_LITERAL } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 const fontDisplay = "'Archivo Black', Impact, sans-serif";
@@ -35,7 +35,7 @@ const StyledMainContainer = styled(Main)`
     p {
       margin-top: 15px;
       max-width: 600px;
-      color: ${colors.slate};
+      color: ${tokens.muted};
       font-size: ${fontSizes.lg};
     }
   }
@@ -60,7 +60,7 @@ const StyledConnector = styled.div`
 const StyledFeature = styled.div`
   ${mixins.boxShadow};
   position: relative;
-  background-color: ${colors.lightNavy};
+  background-color: ${tokens.surface};
   border-radius: ${theme.borderRadius};
   padding: 40px 32px 30px;
   transition: ${theme.transition}, transform 0.25s ease;
@@ -75,8 +75,8 @@ const StyledFeature = styled.div`
     left: 30px;
     width: 46px;
     height: 17px;
-    background: ${hex2rgba(colors.green, 0.5)};
-    box-shadow: 0 1px 3px ${hex2rgba(colors.darkNavy, 0.4)};
+    background: rgba(var(--accent-rgb), 0.5);
+    box-shadow: 0 1px 3px rgba(var(--shadow-rgb), 0.28);
     transform: rotate(-8deg);
   }
 
@@ -85,7 +85,7 @@ const StyledFeature = styled.div`
     transform: rotate(0deg) translateY(-2px);
   }
   &.active {
-    box-shadow: 0 0 0 2px ${colors.green};
+    box-shadow: 0 0 0 2px ${tokens.accentDeep};
   }
 `;
 const StyledStamp = styled.div`
@@ -96,9 +96,9 @@ const StyledStamp = styled.div`
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 2px dashed ${hex2rgba(colors.green, 0.7)};
-  background-color: ${hex2rgba(colors.darkNavy, 0.65)};
-  color: ${colors.green};
+  border: 2px dashed rgba(var(--accent-rgb), 0.8);
+  background-color: ${tokens.paperAlt};
+  color: ${tokens.accentDeep};
   font-family: ${fontHand};
   font-weight: 700;
   font-size: 22px;
@@ -117,7 +117,7 @@ const StyledFeatureMeta = styled.div`
   gap: 6px;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
-  color: ${colors.lightSlate};
+  color: ${tokens.inkSoft};
   text-transform: uppercase;
   letter-spacing: 0.03em;
   svg {
@@ -131,10 +131,10 @@ const StyledFeatureTitle = styled.h3`
   font-size: 30px;
   letter-spacing: 0.01em;
   line-height: 1.25;
-  color: ${colors.lightestSlate};
+  color: ${tokens.ink};
   text-decoration: underline;
   text-decoration-style: wavy;
-  text-decoration-color: ${hex2rgba(colors.green, 0.55)};
+  text-decoration-color: rgba(var(--accent-rgb), 0.7);
   text-underline-offset: 6px;
   ${media.phablet`font-size: 23px;`};
 `;
@@ -154,8 +154,7 @@ const StyledPolaroid = styled.div`
   background-color: #f4efe2;
   padding: 10px 10px 32px;
   border-radius: 2px;
-  box-shadow: 0 10px 18px ${hex2rgba(colors.darkNavy, 0.5)},
-    0 2px 4px ${hex2rgba(colors.darkNavy, 0.3)};
+  box-shadow: 0 10px 18px rgba(var(--shadow-rgb), 0.16), 0 2px 4px rgba(var(--shadow-rgb), 0.1);
   transform: rotate(${p => p.$rot || 0}deg);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   z-index: ${p => p.$z || 1};
@@ -165,7 +164,7 @@ const StyledPolaroid = styled.div`
   }
   &:hover {
     transform: rotate(0deg) translateY(-6px) scale(1.08);
-    box-shadow: 0 18px 26px ${hex2rgba(colors.darkNavy, 0.6)};
+    box-shadow: 0 18px 26px rgba(var(--shadow-rgb), 0.2);
     z-index: 20;
   }
   &:before {
@@ -176,8 +175,8 @@ const StyledPolaroid = styled.div`
     width: 40px;
     height: 15px;
     transform: translateX(-50%) rotate(-3deg);
-    background: ${hex2rgba(colors.green, 0.55)};
-    box-shadow: 0 1px 2px ${hex2rgba(colors.darkNavy, 0.4)};
+    background: rgba(var(--accent-rgb), 0.55);
+    box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.25);
   }
 
   ${media.phablet`
@@ -190,7 +189,7 @@ const StyledPolaroidPhoto = styled.div`
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: linear-gradient(135deg, ${colors.lightestNavy} 0%, ${colors.navy} 100%);
+  background: linear-gradient(135deg, #fff 0%, ${tokens.paperAlt} 100%);
 
   img {
     position: absolute !important;
@@ -224,14 +223,14 @@ const StyledPolaroidCaption = styled.div`
 const StyledFeatureStory = styled.div`
   margin-top: 22px;
   max-width: 640px;
-  color: ${colors.lightSlate};
+  color: ${tokens.inkSoft};
   font-size: ${fontSizes.smil};
 
   p {
     margin: 0;
   }
   em {
-    color: ${colors.slate};
+    color: ${tokens.muted};
   }
 `;
 const StyledFeatureTags = styled.ul`
@@ -244,14 +243,14 @@ const StyledFeatureTags = styled.ul`
   li {
     font-family: ${fonts.SFMono};
     font-size: ${fontSizes.smish};
-    color: ${colors.lightestSlate};
-    background-color: ${hex2rgba(colors.lightestNavy, 0.6)};
+    color: ${tokens.ink};
+    background-color: ${tokens.paperAlt};
     padding: 3px 10px;
     border-radius: 20px;
     margin: 0 8px 8px 0;
     &:before {
       content: '#';
-      color: ${colors.green};
+      color: ${tokens.accentDeep};
     }
   }
 `;
@@ -312,8 +311,8 @@ const TravelsPage = ({ location, data }) => {
           <Heading>Travel Diaries</Heading>
           <p>
             A running map of the places beauty has pulled me toward &mdash; mountains, coastlines,
-            and cities wandered slowly, with the odd conference or competition along for the
-            ride. Hover or tap a pin to preview a trip, or scroll through the journal below.
+            and cities wandered slowly, with the odd conference or competition along for the ride.
+            Hover or tap a pin to preview a trip, or scroll through the journal below.
           </p>
         </header>
 
@@ -328,14 +327,14 @@ const TravelsPage = ({ location, data }) => {
                     <svg viewBox="0 0 46 56" fill="none">
                       <path
                         d="M23 2 C 23 18, 6 24, 23 32 C 34 38, 15 42, 20 52"
-                        stroke={hex2rgba(colors.green, 0.6)}
+                        stroke={hex2rgba(ACCENT_LITERAL, 0.6)}
                         strokeWidth="2"
                         strokeDasharray="5 5"
                         strokeLinecap="round"
                       />
                       <path
                         d="M13 46 L20 54 L28 45"
-                        stroke={hex2rgba(colors.green, 0.7)}
+                        stroke={hex2rgba(ACCENT_LITERAL, 0.7)}
                         strokeWidth="2"
                         fill="none"
                         strokeLinecap="round"

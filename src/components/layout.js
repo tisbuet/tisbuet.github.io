@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Head, Loader, Nav, Social, Email, TravelFab, Footer } from '@components';
 import styled from 'styled-components';
-import { GlobalStyle, theme } from '@styles';
+import { GlobalStyle, theme, tokens } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
@@ -23,8 +23,8 @@ const SkipToContent = styled.a`
   &:focus,
   &:active {
     outline: 0;
-    color: ${colors.green};
-    background-color: ${colors.lightNavy};
+    color: ${tokens.paper};
+    background-color: ${tokens.ink};
     border-radius: ${theme.borderRadius};
     padding: 18px 23px;
     font-size: ${fontSizes.sm};

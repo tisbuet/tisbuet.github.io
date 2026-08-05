@@ -8,7 +8,7 @@ tech:
   - TTS
   - xcodec2
   - Llasa
-company: 'Hishab'
+company: 'Verbex.ai'
 showInProjects: true
 ---
 

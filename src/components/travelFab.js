@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { keyframes } from 'styled-components';
 import { IconPlane } from '@components/icons';
-import { theme, mixins, media } from '@styles';
+import { hex2rgba } from '@utils';
+import { theme, mixins, media, tokens } from '@styles';
 const { colors, fontSizes, fonts, loaderDelay } = theme;
 
 const floatFade = keyframes`
@@ -44,7 +45,7 @@ const StyledLabel = styled.span`
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
   letter-spacing: 0.05em;
-  color: ${colors.green};
+  color: ${tokens.accentDeep};
   pointer-events: none;
   animation: ${floatFade} 2.6s ease-in-out infinite;
   ${media.tablet`display: none;`};
@@ -55,10 +56,10 @@ const StyledFab = styled(Link)`
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background-color: ${colors.lightNavy};
-  border: 1px solid ${colors.green};
-  color: ${colors.green};
-  box-shadow: 0 10px 30px -10px ${colors.shadowNavy};
+  background-color: ${tokens.surface};
+  border: 1px solid ${tokens.rule};
+  color: ${tokens.accentDeep};
+  box-shadow: 0 10px 26px -12px rgba(var(--shadow-rgb), 0.35);
   transition: ${theme.transition};
 
   svg {
@@ -72,7 +73,7 @@ const StyledFab = styled(Link)`
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 1.5px solid ${colors.green};
+    border: 1.5px solid ${tokens.accent};
     animation: ${ringPulse} 2.2s ease-out infinite;
     pointer-events: none;
   }
@@ -80,7 +81,7 @@ const StyledFab = styled(Link)`
   &:hover,
   &:focus {
     transform: translateY(-3px);
-    background-color: ${colors.transGreen};
+    background-color: ${tokens.paperAlt};
 
     svg {
       transform: translateX(2px) translateY(-2px);

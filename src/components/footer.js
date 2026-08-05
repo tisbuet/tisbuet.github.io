@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { FormattedIcon } from '@components/icons';
 import { socialMedia } from '@config';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+import { theme, mixins, media, tokens } from '@styles';
+const { fontSizes, fonts } = theme;
 
 const StyledContainer = styled.footer`
   ${mixins.flexCenter};
@@ -15,7 +14,7 @@ const StyledContainer = styled.footer`
   min-height: 70px;
 `;
 const StyledSocial = styled.div`
-  color: ${colors.lightSlate};
+  color: ${tokens.muted};
   width: 100%;
   max-width: 270px;
   margin: 0 auto 10px;
@@ -35,102 +34,37 @@ const StyledSocialLink = styled.a`
     height: 20px;
   }
 `;
-const StyledMetadata = styled.div`
+const StyledCopyright = styled.p`
+  margin: 0;
+  padding: 12px;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.xs};
+  letter-spacing: 0.06em;
   line-height: 1;
-`;
-const StyledGitHubLink = styled.a`
-  color: ${colors.lightSlate};
-  padding: 15px;
-`;
-const StyledGitHubInfo = styled.div`
-  margin-top: 10px;
-
-  & > span {
-    display: inline-flex;
-    align-items: center;
-    margin: 0 7px;
-  }
-  svg {
-    display: inline-block;
-    height: 15px;
-    width: auto;
-    margin-right: 5px;
-  }
+  color: ${tokens.muted};
 `;
 
-const Footer = () => {
-  const [githubInfo, setGitHubInfo] = useState({
-    stars: null,
-    forks: null,
-  });
+const Footer = () => (
+  <StyledContainer>
+    <StyledSocial>
+      <StyledSocialList>
+        {socialMedia &&
+          socialMedia.map(({ name, url }, i) => (
+            <li key={i}>
+              <StyledSocialLink
+                href={url}
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                aria-label={name}>
+                <FormattedIcon name={name} />
+              </StyledSocialLink>
+            </li>
+          ))}
+      </StyledSocialList>
+    </StyledSocial>
 
-  useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
-      return;
-    }
-    fetch('https://api.github.com/repos/bchiang7/v4')
-      .then(response => response.json())
-      .then(json => {
-        const { stargazers_count, forks_count } = json;
-        setGitHubInfo({
-          stars: stargazers_count,
-          forks: forks_count,
-        });
-      })
-      .catch(e => console.error(e));
-  }, []);
-
-  return (
-    <StyledContainer>
-      <StyledSocial>
-        <StyledSocialList>
-          {socialMedia &&
-            socialMedia.map(({ name, url }, i) => (
-              <li key={i}>
-                <StyledSocialLink
-                  href={url}
-                  target="_blank"
-                  rel="nofollow noopener noreferrer"
-                  aria-label={name}>
-                  <FormattedIcon name={name} />
-                </StyledSocialLink>
-              </li>
-            ))}
-        </StyledSocialList>
-      </StyledSocial>
-      <StyledMetadata tabindex="-1">
-        <StyledGitHubLink
-          href="https://github.com/bchiang7/v4"
-          target="_blank"
-          rel="nofollow noopener noreferrer">
-          <div>
-            Designed &amp; Built by Brittany Chiang<br></br>
-            Revised by Chandrika Deb<br></br>
-            Modified by Md. Tariqul Islam
-          </div>
-
-          {githubInfo.stars && githubInfo.forks && (
-            <StyledGitHubInfo>
-              <span>
-                <FormattedIcon name="Star" />
-                <span>{githubInfo.stars.toLocaleString()}</span>
-              </span>
-              <span>
-                <FormattedIcon name="Fork" />
-                <span>{githubInfo.forks.toLocaleString()}</span>
-              </span>
-            </StyledGitHubInfo>
-          )}
-        </StyledGitHubLink>
-      </StyledMetadata>
-    </StyledContainer>
-  );
-};
-
-Footer.propTypes = {
-  githubInfo: PropTypes.object,
-};
+    <StyledCopyright>&copy; {new Date().getFullYear()} Md. Tariqul Islam</StyledCopyright>
+  </StyledContainer>
+);
 
 export default Footer;

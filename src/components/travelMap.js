@@ -6,7 +6,7 @@ import { feature } from 'topojson-client';
 import landTopology from 'world-atlas/land-110m.json';
 import styled, { keyframes } from 'styled-components';
 import { hex2rgba } from '@utils';
-import { theme, mixins, media } from '@styles';
+import { theme, mixins, media, tokens, ACCENT_LITERAL } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 const WIDTH = 980;
@@ -82,11 +82,11 @@ const projection = geoEqualEarth().fitSize([WIDTH, HEIGHT], landFeature);
 const pathGenerator = geoPath(projection);
 const landPaths = roughGenerator.toPaths(
   roughGenerator.path(pathGenerator(landFeature), {
-    fill: hex2rgba(colors.green, 0.12),
+    fill: hex2rgba(ACCENT_LITERAL, 0.16),
     fillStyle: 'hachure',
     hachureGap: 14,
     fillWeight: 1,
-    stroke: hex2rgba(colors.green, 0.55),
+    stroke: hex2rgba(ACCENT_LITERAL, 0.5),
     strokeWidth: 1.4,
     roughness: 1.3,
     bowing: 1,
@@ -100,9 +100,9 @@ const StyledStats = styled.p`
   margin: 0 0 20px;
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
-  color: ${colors.slate};
+  color: ${tokens.muted};
   span {
-    color: ${colors.lightestSlate};
+    color: ${tokens.ink};
     font-weight: bold;
   }
 `;
@@ -111,7 +111,7 @@ const StyledMapWrapper = styled.div`
   position: relative;
   width: 100%;
   border-radius: ${theme.borderRadius};
-  background-color: ${colors.lightNavy};
+  background-color: ${tokens.surface};
   padding: 20px 20px 10px;
   svg {
     display: block;
@@ -125,28 +125,28 @@ const StyledMapWrapper = styled.div`
     left: 30px;
     width: 46px;
     height: 17px;
-    background: ${hex2rgba(colors.green, 0.5)};
-    box-shadow: 0 1px 3px ${hex2rgba(colors.darkNavy, 0.4)};
+    background: rgba(var(--accent-rgb), 0.5);
+    box-shadow: 0 1px 3px rgba(var(--shadow-rgb), 0.25);
     transform: rotate(-8deg);
   }
 `;
 const StyledPulseRing = styled.circle`
   fill: none;
-  stroke: ${colors.green};
+  stroke: ${tokens.accentDeep};
   stroke-width: 1.5;
   animation: ${pulse} 1.8s ease-out infinite;
   pointer-events: none;
 `;
 const StyledStampRing = styled.circle`
-  fill: ${hex2rgba(colors.darkNavy, 0.75)};
-  stroke: ${colors.green};
+  fill: ${tokens.surface};
+  stroke: ${tokens.accentDeep};
   stroke-width: 1.5;
   stroke-dasharray: 3 2.5;
   r: 8;
   transition: ${theme.transition};
 `;
 const StyledStampDot = styled.circle`
-  fill: ${colors.green};
+  fill: ${tokens.accentDeep};
   r: 3;
   pointer-events: none;
   transition: ${theme.transition};
@@ -170,8 +170,8 @@ const StyledDetailCard = styled.div`
   margin-top: 20px;
   padding: 16px 20px;
   min-height: 44px;
-  background-color: ${colors.lightNavy};
-  border: 1px solid ${colors.lightestNavy};
+  background-color: ${tokens.surface};
+  border: 1px solid ${tokens.rule};
   border-radius: ${theme.borderRadius};
   ${media.phablet`flex-direction: column; align-items: flex-start;`};
 `;
@@ -192,18 +192,18 @@ const StyledDetailBody = styled.div`
   min-width: 0;
 `;
 const StyledDetailTitle = styled.div`
-  color: ${colors.lightestSlate};
+  color: ${tokens.ink};
   font-size: ${fontSizes.md};
   font-weight: 600;
 `;
 const StyledDetailMeta = styled.div`
   font-family: ${fonts.SFMono};
   font-size: ${fontSizes.smish};
-  color: ${colors.green};
+  color: ${tokens.accentDeep};
   margin-top: 4px;
 `;
 const StyledDetailHint = styled.span`
-  color: ${colors.slate};
+  color: ${tokens.muted};
   font-size: ${fontSizes.smil};
 `;
 
@@ -237,7 +237,13 @@ const TravelMap = ({ trips, activeSlug, onSelectTrip }) => {
       <StyledMapWrapper>
         <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} width="100%" height="auto">
           {landPaths.map((path, i) => (
-            <path key={i} d={path.d} stroke={path.stroke} strokeWidth={path.strokeWidth} fill="none" />
+            <path
+              key={i}
+              d={path.d}
+              stroke={path.stroke}
+              strokeWidth={path.strokeWidth}
+              fill="none"
+            />
           ))}
           {orderedTrips.map(trip => (
             <g key={trip.slug} transform={`translate(${trip.x}, ${trip.y})`}>

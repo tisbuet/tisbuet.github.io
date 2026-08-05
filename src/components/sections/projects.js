@@ -242,9 +242,7 @@ const Projects = ({ data }) => {
             })}
         </TransitionGroup>
       </StyledGrid>
-      <StyledArchiveLink to="/archive">
-        View Complete List of Projects
-      </StyledArchiveLink>
+      <StyledArchiveLink to="/archive">View Complete List of Projects</StyledArchiveLink>
     </StyledContainer>
   );
 };

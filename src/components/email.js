@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { email } from '@config';
 import { Side } from '@components';
 import styled from 'styled-components';
-import { theme } from '@styles';
+import { theme, tokens } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledLinkWrapper = styled.div`
@@ -17,7 +17,7 @@ const StyledLinkWrapper = styled.div`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: ${colors.lightSlate};
+    background-color: ${tokens.ruleStrong};
   }
 `;
 const StyledEmailLink = styled.a`

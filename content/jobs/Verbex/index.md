@@ -1,12 +1,10 @@
 ---
 date: '2021-02-08'
-title: 'Senior NLP Engineer'
+title: 'NLP Engineer'
 company: 'Verbex.ai'
-range: 'Feb 2021 - Present'
+range: 'Feb 2021 - Jun 2025'
 url: 'https://verbex.ai/'
 ---
-
-- Building LLM based Text-to-Speech (TTS) systems, including emotional TTS, along with speech denoising and speaker diarization
 
 - OOV Robust ASR for Handling Bengali proper noun
 

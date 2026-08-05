@@ -5,9 +5,12 @@ import mixins from './mixins';
 import FontFaces from './fonts';
 import TransitionStyles from './TransitionStyles';
 import PrismStyles from './PrismStyles';
+import { tokens, ThemeVars } from './editorial';
 const { colors, fontSizes, fonts } = theme;
 
 const GlobalStyle = createGlobalStyle`
+  ${ThemeVars};
+
   ${FontFaces};
 
   html {
@@ -29,8 +32,8 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background-color: ${colors.navy};
-    color: ${colors.slate};
+    background-color: ${tokens.paper};
+    color: ${tokens.inkSoft};
     line-height: 1.3;
     font-family: ${fonts.Calibre};
     font-size: ${fontSizes.xl};
@@ -51,8 +54,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${colors.slate};
-    color: ${colors.lightestSlate};
+    background-color: ${tokens.ruleStrong};
+    color: ${tokens.ink};
   }
 
   #root {
@@ -69,7 +72,7 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6 {
     font-weight: 600;
-    color: ${colors.lightestSlate};
+    color: ${tokens.ink};
     margin: 0 0 10px 0;
   }
 
@@ -122,7 +125,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:hover,
     &:focus {
-      color: ${colors.green};
+      color: ${tokens.accentDeep};
     }
   }
 
@@ -162,8 +165,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     & > code {
-      background-color: ${colors.lightNavy};
-      color: ${colors.white};
+      background-color: ${tokens.paperAlt};
+      color: ${tokens.ink};
       font-size: ${fontSizes.sm};
       border-radius: ${theme.borderRadius};
       padding: 0.3em 0.5em;
@@ -205,7 +208,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   hr {
-    background-color: ${colors.lightestNavy};
+    background-color: ${tokens.rule};
     height: 1px;
     border-width: 0px;
     border-style: initial;
@@ -220,11 +223,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #logo {
-    color: ${colors.green};
+    color: ${tokens.accentDeep};
   }
 
   .overline {
-    color: ${colors.green};
+    color: ${tokens.accentDeep};
     font-family: ${fonts.Calibre};
     font-size: ${fontSizes.md};
     font-weight: 600;
@@ -233,7 +236,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .subtitle {
-    color: ${colors.green};
+    color: ${tokens.accentDeep};
     margin: 0 0 20px 0;
     font-size: ${fontSizes.md};
     font-family: ${fonts.Calibre};
@@ -254,7 +257,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     margin-bottom: 50px;
-    color: ${colors.green};
+    color: ${tokens.accentDeep};
 
     .arrow {
       display: block;

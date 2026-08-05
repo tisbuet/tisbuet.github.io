@@ -4,16 +4,16 @@ avatar: 'pro-pic-2.jpg'
 skills:
   - NLP
   - LLM
-  - Computer Vision
-  - Rasa
+  - TTS
+  - Diarization
+  - Voice Agent
   - Github
   - NeMo(ASR & TTS)
   - Linux
   - Docker
   - GCP & AWS
   - redis
-  - Agile
-  - Kafka
+  - Computer Vision
 ---
 
 I'm an AI researcher and engineer with over five years of experience building Large Language Models (LLMs), Speech AI and Text-to-Speech (TTS) systems. I earned my bachelor's degree from Bangladesh University of Engineering and Technology. My research spans Natural Language Processing, Computer Vision and Signal Processing, resulting in one patent and seven(7) publications, including a paper published in a Springer journal. Throughout my industry career, I've delivered AI solutions for government and enterprise clients across Bangladesh, Japan and India, and have been recognized with multiple Best Performer awards, contributed to open-source AI initiatives and earned top positions in international IEEE AI competitions.

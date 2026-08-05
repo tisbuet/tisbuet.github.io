@@ -4,7 +4,7 @@ import { socialMedia } from '@config';
 import { Side } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
-import { theme } from '@styles';
+import { theme, tokens } from '@styles';
 const { colors } = theme;
 
 const StyledList = styled.ul`
@@ -21,7 +21,7 @@ const StyledList = styled.ul`
     width: 1px;
     height: 90px;
     margin: 0 auto;
-    background-color: ${colors.lightSlate};
+    background-color: ${tokens.ruleStrong};
   }
 
   li:last-of-type {

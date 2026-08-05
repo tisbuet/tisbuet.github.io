@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
 import { navLinks } from '@config';
+import ThemeToggle from './themeToggle';
 import styled from 'styled-components';
-import { theme, mixins, media } from '@styles';
+import { theme, mixins, media, tokens } from '@styles';
 const { colors, fontSizes, fonts } = theme;
 
 const StyledClip = styled.div`
@@ -40,7 +41,7 @@ const StyledContainer = styled.div`
 const Sidebar = styled.aside`
   ${mixins.flexCenter};
   flex-direction: column;
-  background-color: ${colors.lightNavy};
+  background-color: ${tokens.paperAlt};
   padding: 50px;
   width: 50vw;
   height: 100%;
@@ -48,7 +49,7 @@ const Sidebar = styled.aside`
   right: 0;
   margin-left: auto;
   font-family: ${fonts.Calibre};
-  box-shadow: -10px 0px 30px -15px ${colors.shadowNavy};
+  box-shadow: -10px 0px 30px -18px rgba(var(--shadow-rgb), 0.3);
   ${media.thone`padding: 25px;`};
   ${media.phablet`width: 75vw;`};
   ${media.tiny`padding: 10px;`};
@@ -58,7 +59,7 @@ const NavLinks = styled.nav`
   width: 100%;
   flex-direction: column;
   text-align: center;
-  color: ${colors.lightestSlate};
+  color: ${tokens.ink};
 `;
 const NavList = styled.ol`
   padding: 0;
@@ -110,6 +111,9 @@ const Menu = ({ menuOpen, toggleMenu }) => {
                   </NavListItem>
                 ))}
             </NavList>
+            <div style={{ marginTop: 30, display: 'flex', justifyContent: 'center' }}>
+              <ThemeToggle />
+            </div>
           </NavLinks>
         </Sidebar>
       </StyledContainer>

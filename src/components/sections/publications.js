@@ -17,11 +17,11 @@ const PUB_TYPE_FILTERS = [
 
 const ColoredLine = ({}) => (
   <hr
-      style={{
-          height: 2,
-          marginBottom: 40,
-          marginTop: 1
-      }}
+    style={{
+      height: 2,
+      marginBottom: 40,
+      marginTop: 1,
+    }}
   />
 );
 const StyledContainer = styled(Section)`
@@ -205,15 +205,16 @@ const StyledProject = styled.div`
   &:last-of-type {
     margin-bottom: 0;
   }
-  
 `;
 
 const Publications = ({ data, patents, citations }) => {
-  const publicationsProjects = data.filter(({ node }) => node).sort((a, b) => {
-    const citationsA = a.node.frontmatter.citations ?? -1;
-    const citationsB = b.node.frontmatter.citations ?? -1;
-    return citationsB - citationsA; // Sort descending by citation count
-  });
+  const publicationsProjects = data
+    .filter(({ node }) => node)
+    .sort((a, b) => {
+      const citationsA = a.node.frontmatter.citations ?? -1;
+      const citationsB = b.node.frontmatter.citations ?? -1;
+      return citationsB - citationsA; // Sort descending by citation count
+    });
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeType, setActiveType] = useState('all');
@@ -246,121 +247,80 @@ const Publications = ({ data, patents, citations }) => {
         Publications & Patents [Patents: 1, Journal articles: 1, Conference articles: 6]
       </Heading>
       <StyledBody>
-      {citations != null && (
-        <StyledTotalCitations>
-          Total Citations: <span>{citations}</span>{' '}
-          (<a href={scholarUrl} target="_blank" rel="nofollow noopener noreferrer">
-            Google Scholar profile
-          </a>)
-        </StyledTotalCitations>
-      )}
+        {citations != null && (
+          <StyledTotalCitations>
+            Total Citations: <span>{citations}</span> (
+            <a href={scholarUrl} target="_blank" rel="nofollow noopener noreferrer">
+              Google Scholar profile
+            </a>
+            )
+          </StyledTotalCitations>
+        )}
 
-      <CitationsChart publications={publicationsProjects} patents={patents} />
+        <CitationsChart publications={publicationsProjects} patents={patents} />
 
-      <StyledFilterBar>
-        <StyledSearchInput
-          type="text"
-          placeholder="Search publications..."
-          value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
-          aria-label="Search publications"
-        />
-        <StyledPillGroup role="group" aria-label="Filter by publication type">
-          {PUB_TYPE_FILTERS.map(({ key, label }) => (
-            <StyledPill
-              key={key}
-              type="button"
-              aria-pressed={activeType === key}
-              $active={activeType === key}
-              onClick={() => setActiveType(key)}>
-              {label}
-            </StyledPill>
-          ))}
-        </StyledPillGroup>
-      </StyledFilterBar>
+        <StyledFilterBar>
+          <StyledSearchInput
+            type="text"
+            placeholder="Search publications..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            aria-label="Search publications"
+          />
+          <StyledPillGroup role="group" aria-label="Filter by publication type">
+            {PUB_TYPE_FILTERS.map(({ key, label }) => (
+              <StyledPill
+                key={key}
+                type="button"
+                aria-pressed={activeType === key}
+                $active={activeType === key}
+                onClick={() => setActiveType(key)}>
+                {label}
+              </StyledPill>
+            ))}
+          </StyledPillGroup>
+        </StyledFilterBar>
 
-      {filteredPublications.length === 0 && filteredPatents.length === 0 && (
-        <StyledNoResults>No publications or patents match your search.</StyledNoResults>
-      )}
+        {filteredPublications.length === 0 && filteredPatents.length === 0 && (
+          <StyledNoResults>No publications or patents match your search.</StyledNoResults>
+        )}
 
-      <div>
-        {filteredPublications &&
-          filteredPublications.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const {
-              external,
-              title,
-              location,
-              tech,
-              type: pubType,
-              citations: pubCitations,
-            } = frontmatter;
-
-            return (
-              <StyledProject key={i}>
-                <StyledContent>
-                  {pubType && (
-                    <StyledPubTypeLabel>
-                      {pubType === 'journal' ? 'Journal Article' : 'Conference Paper'}
-                    </StyledPubTypeLabel>
-                  )}
-                  <StyledProjectName>
-                    {external ? (
-                      <a
-                        href={external}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        aria-label="External Link">
-                        {title}
-                      </a>
-                    ) : (
-                      i, title
-                    )}
-                    {pubCitations != null && (
-                      <StyledCitationBadge>
-                        {pubCitations} {pubCitations === 1 ? 'citation' : 'citations'}
-                      </StyledCitationBadge>
-                    )}
-                  </StyledProjectName>
-                  <p>
-                     <i>{location}</i>
-                  </p>
-                  {tech && (
-                    <StyledTechList>
-                      {tech.map((tech, i) => (
-                        <li key={i}>{tech}</li>
-                      ))}
-                    </StyledTechList>
-                  )}
-                  <ColoredLine/>
-                </StyledContent>
-              </StyledProject>
-            );
-          })}
-      </div>
-
-      {filteredPatents.length > 0 && (
-        <>
-          <StyledLabel>Patents</StyledLabel>
-          <div>
-            {filteredPatents.map(({ node }, i) => {
-              const { frontmatter } = node;
-              const { external, title, location, tech, citations: patCitations } = frontmatter;
+        <div>
+          {filteredPublications &&
+            filteredPublications.map(({ node }, i) => {
+              const { frontmatter, html } = node;
+              const {
+                external,
+                title,
+                location,
+                tech,
+                type: pubType,
+                citations: pubCitations,
+              } = frontmatter;
 
               return (
                 <StyledProject key={i}>
                   <StyledContent>
+                    {pubType && (
+                      <StyledPubTypeLabel>
+                        {pubType === 'journal' ? 'Journal Article' : 'Conference Paper'}
+                      </StyledPubTypeLabel>
+                    )}
                     <StyledProjectName>
-                      <a
-                        href={external}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        aria-label="External Link">
-                        {title}
-                      </a>
-                      {patCitations != null && (
+                      {external ? (
+                        <a
+                          href={external}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="External Link">
+                          {title}
+                        </a>
+                      ) : (
+                        (i, title)
+                      )}
+                      {pubCitations != null && (
                         <StyledCitationBadge>
-                          {patCitations} {patCitations === 1 ? 'citation' : 'citations'}
+                          {pubCitations} {pubCitations === 1 ? 'citation' : 'citations'}
                         </StyledCitationBadge>
                       )}
                     </StyledProjectName>
@@ -379,9 +339,51 @@ const Publications = ({ data, patents, citations }) => {
                 </StyledProject>
               );
             })}
-          </div>
-        </>
-      )}
+        </div>
+
+        {filteredPatents.length > 0 && (
+          <>
+            <StyledLabel>Patents</StyledLabel>
+            <div>
+              {filteredPatents.map(({ node }, i) => {
+                const { frontmatter } = node;
+                const { external, title, location, tech, citations: patCitations } = frontmatter;
+
+                return (
+                  <StyledProject key={i}>
+                    <StyledContent>
+                      <StyledProjectName>
+                        <a
+                          href={external}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          aria-label="External Link">
+                          {title}
+                        </a>
+                        {patCitations != null && (
+                          <StyledCitationBadge>
+                            {patCitations} {patCitations === 1 ? 'citation' : 'citations'}
+                          </StyledCitationBadge>
+                        )}
+                      </StyledProjectName>
+                      <p>
+                        <i>{location}</i>
+                      </p>
+                      {tech && (
+                        <StyledTechList>
+                          {tech.map((tech, i) => (
+                            <li key={i}>{tech}</li>
+                          ))}
+                        </StyledTechList>
+                      )}
+                      <ColoredLine />
+                    </StyledContent>
+                  </StyledProject>
+                );
+              })}
+            </div>
+          </>
+        )}
       </StyledBody>
     </StyledContainer>
   );

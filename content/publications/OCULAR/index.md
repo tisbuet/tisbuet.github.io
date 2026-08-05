@@ -3,7 +3,7 @@ date: '3'
 type: 'conference'
 title: 'Source and Camera Independent Ophthalmic Disease Recognition from Fundus Image Using Neural Network'
 location: 'IEEE SPICSCON, 2019'
-external: 'https://ieeexplore.ieee.org/document/9065162'
+external: 'https://scholar.google.co.uk/citations?view_op=view_citation&hl=en&user=iRSDOrUAAAAJ&citation_for_view=iRSDOrUAAAAJ:u-x6o8ySG0sC'
 tech:
   - opencv
   - ocular

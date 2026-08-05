@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Layout, Expandable } from '@components';
 import { FormattedIcon } from '@components/icons';
 import styled from 'styled-components';
-import { theme, mixins, media, Main } from '@styles';
+import { theme, mixins, media, Main, tokens } from '@styles';
 const { colors, fonts, fontSizes } = theme;
 
 const StyledMainContainer = styled(Main)``;
@@ -21,21 +21,21 @@ const StyledSearchInput = styled.input`
   margin-top: 20px;
   padding: 8px 14px;
   background-color: transparent;
-  border: 1px solid ${colors.lightestNavy};
+  border: 1px solid ${tokens.rule};
   border-radius: ${theme.borderRadius};
-  color: ${colors.lightestSlate};
+  color: ${tokens.ink};
   font-family: ${fonts.Calibre};
   font-size: ${fontSizes.smil};
   &:focus {
     outline: 0;
-    border-color: ${colors.green};
+    border-color: ${tokens.accentDeep};
   }
   &::placeholder {
-    color: ${colors.slate};
+    color: ${tokens.muted};
   }
 `;
 const StyledNoResults = styled.p`
-  color: ${colors.slate};
+  color: ${tokens.muted};
   font-size: ${fontSizes.smil};
   margin: 20px 0 0;
 `;
@@ -44,14 +44,14 @@ const StyledExpandTrigger = styled.button`
   border: 0;
   padding: 0;
   margin-right: 10px;
-  color: ${colors.green};
+  color: ${tokens.accentDeep};
   font-family: ${fonts.Calibre};
   font-size: ${fontSizes.xl};
   line-height: 1;
   cursor: pointer;
   &:focus {
     outline: 0;
-    color: ${colors.lightestSlate};
+    color: ${tokens.ink};
   }
 `;
 const StyledExpandableRow = styled.tr`
@@ -65,7 +65,7 @@ const StyledExpandableRow = styled.tr`
   }
 `;
 const StyledExpandableContent = styled.div`
-  color: ${colors.lightSlate};
+  color: ${tokens.inkSoft};
   font-size: ${fontSizes.md};
   line-height: 1.5;
 `;
@@ -84,7 +84,7 @@ const StyledTable = styled.table`
 
     &:hover,
     &:focus {
-      background-color: ${colors.lightNavy};
+      background-color: ${tokens.paperAlt};
     }
   }
   th,
@@ -108,7 +108,7 @@ const StyledTable = styled.table`
     }
     &.title {
       padding-top: 15px;
-      color: ${colors.lightestSlate};
+      color: ${tokens.ink};
       font-size: ${fontSizes.xl};
       font-weight: 700;
     }

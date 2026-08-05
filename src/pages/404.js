@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import { Layout } from '@components';
 import styled from 'styled-components';
-import { theme, mixins, media, Main } from '@styles';
+import { theme, mixins, media, Main, tokens } from '@styles';
 const { colors, fonts, navDelay } = theme;
 
 const StyledMainContainer = styled(Main)`
@@ -12,7 +12,7 @@ const StyledMainContainer = styled(Main)`
   flex-direction: column;
 `;
 const StyledTitle = styled.h1`
-  color: ${colors.green};
+  color: ${tokens.accentDeep};
   font-family: ${fonts.SFMono};
   font-size: 12vw;
   line-height: 1;
