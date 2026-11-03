@@ -250,7 +250,7 @@ const IndexPage = ({ location, data }) => {
             <Eyebrow>What I work on</Eyebrow>
             <SectionTitle>Building AI that holds up outside the lab</SectionTitle>
             <Lede>
-              Five years of shipping speech and language systems, seven publications and a patent
+              Five and a half years of shipping speech and language systems, seven publications and a patent
               behind them, now pointed at public revenue administration.
             </Lede>
 
