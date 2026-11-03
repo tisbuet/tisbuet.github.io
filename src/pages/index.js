@@ -227,7 +227,7 @@ const IndexPage = ({ location, data }) => {
                 <Eyebrow>{hero.frontmatter.title}</Eyebrow>
                 <DisplayTitle>{hero.frontmatter.name}</DisplayTitle>
                 <StyledCredentials>
-                  Senior NLP Engineer · Researcher · BCS Customs &amp; Excise
+                  Assistant Commissioner · BCS Customs &amp; Excise · Researcher
                 </StyledCredentials>
                 <Lede as="div" dangerouslySetInnerHTML={{ __html: hero.html }} />
                 <Button as={Link} to="/about">
