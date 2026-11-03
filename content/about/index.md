@@ -2,7 +2,8 @@
 title: 'About Me'
 avatar: 'pro-pic-2.jpg'
 skills:
-  - NLP
+  - Customs
+  - Trade
   - LLM
   - TTS
   - Diarization
@@ -16,8 +17,8 @@ skills:
   - Computer Vision
 ---
 
-I'm an AI researcher and engineer with over five years of experience building Large Language Models (LLMs), Speech AI and Text-to-Speech (TTS) systems. I earned my bachelor's degree from Bangladesh University of Engineering and Technology. My research spans Natural Language Processing, Computer Vision and Signal Processing, resulting in one patent and seven(7) publications, including a paper published in a Springer journal. Throughout my industry career, I've delivered AI solutions for government and enterprise clients across Bangladesh, Japan and India, and have been recognized with multiple Best Performer awards, contributed to open-source AI initiatives and earned top positions in international IEEE AI competitions.
+I'm an Assistant Commissioner in the Bangladesh Civil Service (BCS), serving in the Customs and Excise Cadre. I earned my bachelor's degree from Bangladesh University of Engineering and Technology (BUET) and have over five and a half years of professional experience in the technology industry, working on Large Language Models (LLMs), Speech AI and Text-to-Speech (TTS) systems. My research spans Natural Language Processing, Computer Vision and Signal Processing, resulting in one patent and seven publications, including a paper published in a Springer journal. Throughout my industry career, I've delivered AI solutions for government and enterprise clients across Bangladesh, Japan and India, received multiple Best Performer awards, contributed to open-source AI initiatives and earned top positions in international IEEE AI competitions.
 
-I've recently been recommended for the BCS Customs and Excise Cadre as an Assistant Commissioner, marking the start of my journey in public service. My mission is to build a modern, technology-driven customs administration — integrating AI, analytics and digital governance to strengthen revenue collection, safeguard Bangladesh's economic interests, facilitate legitimate trade and combat illicit trade.
+Having recently joined the Customs and Excise Cadre, I look forward to contributing to Customs modernization and trade facilitation in Bangladesh. My long-term interests include international trade, Customs policy, economic development and exploring how technology, data analytics and digital governance can help build a more efficient, transparent and globally aligned Customs administration.
 
-Here is a list of the technologies that I'm familiar with!
+Here is a glimpse into my professional background, research contributions and areas of interest!
